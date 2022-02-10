@@ -1,0 +1,26 @@
+
+
+head{
+    background-color: teal;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+   
+}
+
+
+
+li{
+    float:left;
+    display:block;
+    color:black;
+    padding: 16px 14px;
+    text-align: center;
+}
+
+ h1{
+    position:relative;
+} 
