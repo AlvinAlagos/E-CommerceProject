@@ -28,7 +28,6 @@
             $this->db->bind(':username', $data['username']);
             $this->db->bind(':password_hash', $data['password_hash']);
 
-
             if($this->db->execute()){
                 return true;
             }
@@ -45,7 +44,6 @@
             $this->db->bind(':mname', $info['middlename']);
             $this->db->bind(':lname', $info['lastname']);
             $this->db->bind(':authorId',$info['authorId'] );
-
 
             if($this->db->execute()){
                 return true;

@@ -17,7 +17,7 @@ class Login extends Controller
             $user = $this->loginModel->getAuthor($_POST['username']);
 
             if ($user != null) {
-                $hashed_pass = $user->pasword_hash;
+                $hashed_pass = $user->password_hash;
                 $password = $_POST['password'];
                 if (password_verify($password, $hashed_pass)) {
                     $this->createSession($user);
@@ -51,14 +51,20 @@ class Login extends Controller
                    if($this->loginModel->registerAuthor($data)){
                     echo 'Please wait creating the account for '.trim($_POST['username']);
                     
-                   // echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
-                   $authorId = $this->loginModel->bindId($this->loginModel->getAuthorID($_POST['username']));
+                   
+                   //check this
+                   $author = $this->loginModel->getAuthor($_POST['username']);
+
+                   $authorId = $author->author_id;
+                    
                    $info = [
                     'authorId' => $authorId,
                     'firstname' => trim($_POST['fname']),
                     'middlename' => trim($_POST['mname']),
                     'lastname' => trim($_POST['lname']),
+                    
                 ];
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
                    $this->loginModel->createProfile($info);
                    }
                }
@@ -84,7 +90,7 @@ class Login extends Controller
 
     public function createSession($user)
     {
-        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_id'] = $user->author_id;
         $_SESSION['user_username'] = $user->username;
     }
 }
