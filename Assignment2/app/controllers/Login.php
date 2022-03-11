@@ -52,8 +52,7 @@ class Login extends Controller
                     echo 'Please wait creating the account for '.trim($_POST['username']);
                 
                    $author = $this->loginModel->getAuthor($_POST['username']);
-
-                   $authorId = $author->author_id;
+                    $authorId = $author->author_id;
                     
                    $info = [
                     'authorId' => $authorId,
@@ -83,6 +82,7 @@ class Login extends Controller
         echo '<meta http-equiv="Refresh" content="1; url=/Assignment2/">';
     }
 
+    //check if needed
     public function createProfile($info)
     {
         $username = $info['username'];

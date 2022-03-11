@@ -1,5 +1,4 @@
-<?php require APPROOT . '/views/includes/header.php'; 
-?>
+<?php require APPROOT . '/views/includes/header.php'; ?>
 
 <form class="vh-100" method="post" action="" style="background-color: #FFFFFF ;">
   <div class="container py-5 h-100">

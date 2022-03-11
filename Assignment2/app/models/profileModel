@@ -1,0 +1,15 @@
+<?php
+    class profileModel{
+        public function __construct()
+        {
+            $this->db = new Model;
+        }
+
+        public function getProfile($profileId) {
+            $this->db->query('SELECT * FROM profile WHERE profile_id = :profileid');
+            $this->db->bind(':profileid', $profileId);
+            return $this->db->getSingle();
+        }
+    }
+
+?>

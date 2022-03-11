@@ -17,6 +17,7 @@
             return $this->db->getSingle();
         }
 
+        //check if needed after fix
         public function bindId($authorId){
             $this->db->query('SELECT author_id FROM author WHERE author_id = :authorId');
             $this->db->bind(':authorId', $authorId);
@@ -34,7 +35,6 @@
             else{
                 return false;
             }
-
         }
 
         public function createProfile($info){
