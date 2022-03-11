@@ -37,7 +37,6 @@
 
         }
 
-    
         public function createProfile($info){
             $this->db->query("INSERT INTO profile (first_name, middle_name, last_name, author_id) values (:fname, :mname, :lname,:authorId)");
             $this->db->bind(':fname', $info['firstname']);

@@ -13,29 +13,35 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/Assignment2/Home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Assignment2/Publications">Publications</a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/Assignment2/Home">Home</a>
+            </li>
 
-    </ul>
-   
-      <ul class="nav navbar-nav navbar-right">
-    <?php
-    if (isLoggedIn()) {
-      echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_username'].'</a></li>';
-    } 
-    else {
-      echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/registerAuthor "><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
-          <li class="nav-item"><a class="nav-link" href="/Assignment2/Login/"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>';
-    }
-    ?>
-  </ul>
-  </div>
+            <li class="nav-item">
+                <a class="nav-link" href="/Assignment2/Profile">Profile</a>
+            </li>
+        
+            <!--
+            <li class="nav-item">
+                <a class="nav-link" href="/Assignment2/Publications">Publications</a>
+            </li>
+
+                -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <?php
+            if (isLoggedIn()) {
+            echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_username'].'</a></li>';
+            } 
+            else {
+            echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/registerAuthor "><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Assignment2/Login/"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>';
+            }
+            ?>
+        </ul>
+    </div>
 </nav>
 </body>
 </html>

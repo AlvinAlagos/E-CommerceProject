@@ -10,7 +10,7 @@ class Login extends Controller
     public function index()
     {
         if (!isset($_POST['login'])) {
-            $this->view('Profile/index');
+            $this->view('Login/index');
         } else {
             // print_r("Hello");
 
@@ -25,11 +25,11 @@ class Login extends Controller
                     $this->view('Home/home', $data);
                 } else {
                     $data = ['msg' => "Password incorrect! for $user->username",];
-                    $this->view('Profile/index', $data);
+                    $this->view('Login/index', $data);
                 }
             } else {
                 $data = ['msg' => "User: " . $_POST['username'] . " does not exists",];
-                $this->view('Profile/login', $data);
+                $this->view('Login/login', $data);
             }
         }
     }
@@ -37,7 +37,7 @@ class Login extends Controller
     public function registerAuthor()
     {
         if (!isset($_POST['signup'])) {
-            $this->view('Profile/register');
+            $this->view('Login/register');
         } else {
                // print_r("Hello");
                $user = $this->loginModel->getAuthor($_POST['username']);
@@ -50,9 +50,7 @@ class Login extends Controller
 
                    if($this->loginModel->registerAuthor($data)){
                     echo 'Please wait creating the account for '.trim($_POST['username']);
-                    
-                   
-                   //check this
+                
                    $author = $this->loginModel->getAuthor($_POST['username']);
 
                    $authorId = $author->author_id;
@@ -72,7 +70,7 @@ class Login extends Controller
                 $data = [
                     'msg' => "User: ". $_POST['username'] ." already exists",
                 ];
-                $this->view('Profile/register',$data);
+                $this->view('Login/register',$data);
             }
 
            
@@ -91,8 +89,6 @@ class Login extends Controller
         $authorId = $this->loginModel->getAuthorId($username);
         $this->loginModel->createProfile($info, $username);
     }
-
-
 
     public function createSession($user)
     {

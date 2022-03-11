@@ -9,6 +9,8 @@
         public function index(){
             $this->view('Publication/publications');
         }
-    }
 
+
+        //get the publication, using get (html url)
+    }
 ?>

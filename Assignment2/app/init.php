@@ -1,7 +1,6 @@
 <?php 
     
     require_once 'config/config.php';
-    
     require_once 'core/helper.php';
 
     spl_autoload_register(function($className){
