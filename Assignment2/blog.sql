@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2022 at 09:33 PM
+-- Generation Time: Mar 18, 2022 at 08:36 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -38,7 +38,8 @@ CREATE TABLE `author` (
 --
 
 INSERT INTO `author` (`author_id`, `username`, `password_hash`) VALUES
-(13, 'getll8', '$2y$10$1RLKdplvoASHOnAe2/VnvuyatYk8Pmj17v3eI2zPLR6uHarAXg2VO');
+(13, 'getll8', '$2y$10$1RLKdplvoASHOnAe2/VnvuyatYk8Pmj17v3eI2zPLR6uHarAXg2VO'),
+(14, 'getll9', '$2y$10$kRgVQMEAiAG2oipReH0YZOG3QOUqL9.f4cCXHjhd3/FMTRdtw7K1K');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ CREATE TABLE `publication` (
   `publication_id` int(11) NOT NULL,
   `publication_title` varchar(255) NOT NULL,
   `publication_text` varchar(255) NOT NULL,
-  `timestamp` date NOT NULL,
+  `timestamp` date NOT NULL DEFAULT current_timestamp(),
   `publication_status` tinyint(1) NOT NULL,
   `profile_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,7 +82,10 @@ CREATE TABLE `publication` (
 --
 
 INSERT INTO `publication` (`publication_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`, `profile_id`) VALUES
-(1, 'The Great Void', 'The great void is great. The thing that is great about it is the void.', '2022-03-09', 1, 4);
+(1, 'The Great Void', 'The great void is great. The thing that is great about it is the void.', '2022-03-09', 1, 4),
+(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 0, 4),
+(3, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4),
+(8, 'How to train your dragon', 'aaaaaaaaaaaaaaaaaaaa', '2022-03-18', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -138,19 +142,19 @@ ALTER TABLE `publication_comment`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `publication_comment`
