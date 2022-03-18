@@ -1,7 +1,6 @@
 <?php
 class Login extends Controller
 {
-
     public function __construct()
     {
         $this->loginModel = $this->model('loginModel');
@@ -21,8 +20,12 @@ class Login extends Controller
                 $password = $_POST['password'];
                 if (password_verify($password, $hashed_pass)) {
                     $this->createSession($user);
-                    $data = ['msg' => "Welcome, $user->username!",];
-                    $this->view('Home/home', $data);
+                    
+                    // $data = ['msg' => "Welcome, $user->username!",];
+                    // $this->view('Home/home', $data);
+
+                    echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home/">';
+
                 } else {
                     $data = ['msg' => "Password incorrect! for $user->username",];
                     $this->view('Login/index', $data);
@@ -38,61 +41,60 @@ class Login extends Controller
     {
         if (!isset($_POST['signup'])) {
             $this->view('Login/register');
-        } else {
-               // print_r("Hello");
-               $user = $this->loginModel->getAuthor($_POST['username']);
-               if($user == null){
+        } 
+        else {
+            // print_r("Hello");
+            $user = $this->loginModel->getAuthor($_POST['username']);
+            if($user == null){
                
-                   $data = [
-                       'username' => trim($_POST['username']),
-                       'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                   ];
+                $data = [
+                    'username' => trim($_POST['username']),
+                    'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                ];
 
-                   if($this->loginModel->registerAuthor($data)){
+                if($this->loginModel->registerAuthor($data)){
                     echo 'Please wait creating the account for '.trim($_POST['username']);
-                
-                   $author = $this->loginModel->getAuthor($_POST['username']);
+            
+                    $author = $this->loginModel->getAuthor($_POST['username']);
                     $authorId = $author->author_id;
                     
-                   $info = [
-                    'authorId' => $authorId,
-                    'firstname' => trim($_POST['fname']),
-                    'middlename' => trim($_POST['mname']),
-                    'lastname' => trim($_POST['lname']),
+                    $info = [
+                        'authorId' => $authorId,
+                        'firstname' => trim($_POST['fname']),
+                        'middlename' => trim($_POST['mname']),
+                        'lastname' => trim($_POST['lname']),
+                    ];
                     
-                ];
-                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
-                   $this->loginModel->createProfile($info);
-                   }
-               }
-               else{
+                    echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
+                    $this->loginModel->createProfile($info);
+                }
+            }
+            else {
                 $data = [
                     'msg' => "User: ". $_POST['username'] ." already exists",
                 ];
                 $this->view('Login/register',$data);
             }
-
-           
         }
     }
 
     public function logout() {
-        unset($_SESSION['user_id']);
+        unset($_SESSION['author_id']);
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/Assignment2/">';
     }
 
     //check if needed
-    public function createProfile($info)
-    {
-        $username = $info['username'];
-        $authorId = $this->loginModel->getAuthorId($username);
-        $this->loginModel->createProfile($info, $username);
-    }
+    // public function createProfile($info)
+    // {
+    //     $username = $info['username'];
+    //     $authorId = $this->loginModel->getAuthorId($username);
+    //     $this->loginModel->createProfile($info, $username);
+    // }
 
     public function createSession($user)
     {
-        $_SESSION['user_id'] = $user->author_id;
+        $_SESSION['author_id'] = $user->author_id;
         $_SESSION['user_username'] = $user->username;
     }
 }

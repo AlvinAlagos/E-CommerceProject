@@ -25,7 +25,7 @@
         }
 
         public function registerAuthor($data){
-        $this->db->query("INSERT INTO author (username, password_hash) values (:username, :password_hash)");
+            $this->db->query("INSERT INTO author (username, password_hash) values (:username, :password_hash)");
             $this->db->bind(':username', $data['username']);
             $this->db->bind(':password_hash', $data['password_hash']);
 

@@ -18,8 +18,6 @@ class Model
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
 
-
-
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
         } catch (PDOException $e) {
@@ -55,7 +53,6 @@ class Model
 
         $this->stmt->bindValue($param, $value, $type);
     }
-
  
     public function execute()
     {
