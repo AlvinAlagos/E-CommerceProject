@@ -14,7 +14,7 @@
               <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Username" />
               <label class="form-label" for="username">Username</label>
             </div>
-
+        <!-- 
             <div class="form-outline mb-4">
               <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="First Name" />
               <label class="form-label" for="fname">First Name</label>
@@ -28,14 +28,19 @@
             <div class="form-outline mb-4">
               <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Last Name" />
               <label class="form-label" for="lname">Last Name</label>
-            </div>
+            </div> 
+        -->
 
             <div class="form-outline mb-4">
               <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" />
               <label class="form-label" for="password">Password</label>
             </div>
-
-            <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
+            <div class="form-outline mb-4">
+                <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
+            </div>
+            <div class="container">
+                <a href='/Assignment2/Login/index'>Already have an account?</a>  
+            </div>
           </div>
         </div>
       </div>

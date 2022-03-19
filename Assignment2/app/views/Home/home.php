@@ -2,7 +2,7 @@
 
     <div class="container">
         <h1 class="display-1">Welcome to our blog</h1>
-        <p>you will find all publications here</p>
+        <p>Read publications on our blog! All public publications are shown below.</p>
 
         <?php
             foreach($data["publications"] as $publication){
@@ -11,7 +11,7 @@
                     echo "<a href='/Assignment2/Publication/getPublication/$publication->publication_id'>$publication->publication_title</a>";
                     echo "</h2>";
                     echo "<p>";
-                    echo "Written by $publication->last_name, $publication->first_name $publication->middle_name on $publication->timestamp";
+                    echo "Written by $publication->last_name, $publication->first_name $publication->middle_name ($publication->username) on $publication->timestamp";
                     echo "</p>";
                 }
             }

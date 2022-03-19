@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2022 at 08:36 AM
+-- Generation Time: Mar 19, 2022 at 08:36 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -39,7 +39,10 @@ CREATE TABLE `author` (
 
 INSERT INTO `author` (`author_id`, `username`, `password_hash`) VALUES
 (13, 'getll8', '$2y$10$1RLKdplvoASHOnAe2/VnvuyatYk8Pmj17v3eI2zPLR6uHarAXg2VO'),
-(14, 'getll9', '$2y$10$kRgVQMEAiAG2oipReH0YZOG3QOUqL9.f4cCXHjhd3/FMTRdtw7K1K');
+(14, 'getll9', '$2y$10$kRgVQMEAiAG2oipReH0YZOG3QOUqL9.f4cCXHjhd3/FMTRdtw7K1K'),
+(15, 'getll10', '$2y$10$ifc4Jg2qrsVA3/PbapXbyuHw9szBasX7bhvZWrwy4qY4f8gqw1oyW'),
+(16, 'getll11', '$2y$10$4RzgmezIUPp2C58oPjXA2OLYKtvzjSune.Ye99nFmaft4e0LJWX9S'),
+(17, 'getll12', '$2y$10$LhFi97RVW/Jnqd/ym80N/es4ByCAieMtQKIkYHnNH/OCrl5SgKD8m');
 
 -- --------------------------------------------------------
 
@@ -60,7 +63,8 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`profile_id`, `first_name`, `middle_name`, `last_name`, `author_id`) VALUES
-(4, 'Denmar', '', 'Ermitano', 13);
+(4, 'Denmar', '', 'Ermitano', 13),
+(6, 'Dmar', 'Law', 'Erm', 14);
 
 -- --------------------------------------------------------
 
@@ -82,10 +86,8 @@ CREATE TABLE `publication` (
 --
 
 INSERT INTO `publication` (`publication_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`, `profile_id`) VALUES
-(1, 'The Great Void', 'The great void is great. The thing that is great about it is the void.', '2022-03-09', 1, 4),
-(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 0, 4),
-(3, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4),
-(8, 'How to train your dragon', 'aaaaaaaaaaaaaaaaaaaa', '2022-03-18', 1, 4);
+(1, 'The Great Void', 'v o i d .', '2022-03-09', 1, 4),
+(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -142,13 +144,13 @@ ALTER TABLE `publication_comment`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `publication`

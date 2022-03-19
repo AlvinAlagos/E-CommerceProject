@@ -18,8 +18,12 @@
               <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" />
               <label class="form-label" for="password">Password</label>
             </div>
-
-            <button type="submit" name="login" class="btn btn-primary">Sign in</button>
+            <div class="form-outline mb-4">
+                <button type="submit" name="login" class="btn btn-primary">Sign in</button>
+            </div>
+            <div class="container">
+                <a href='/Assignment2/Login/register'>Don't have an account?</a>  
+            </div>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@
             echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_username'].'</a></li>';
             } 
             else {
-            echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/registerAuthor "><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
+            echo '<li class="nav-item"><a class="nav-link" href="/Assignment2/Login/register "><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
                 <li class="nav-item"><a class="nav-link" href="/Assignment2/Login/"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>';
             }
             ?>

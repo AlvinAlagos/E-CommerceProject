@@ -6,15 +6,10 @@
         echo "<h1>$publication->publication_title</h1>";
 
         if (isLoggedIn() && $_SESSION['author_id'] == $publication->author_id) {
-            echo "<div>You can edit your own post.</div>";
-            #button for delete
-
-            #button for edit
-            echo "buttons";
-
+            echo "This post was made by you! :D";
         }
 
-        echo "<p>Written by $publication->last_name, $publication->first_name $publication->middle_name on $publication->timestamp</p>";
+        echo "<p>Written by $publication->last_name, $publication->first_name $publication->middle_name ($publication->username) on $publication->timestamp</p>";
         echo "</div>";
 
         echo "<div class='container'>";
