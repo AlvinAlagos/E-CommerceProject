@@ -31,5 +31,21 @@
                 return false;
             }
         }
+
+        public function editProfile($data) {
+            $this->db->query("UPDATE profile SET first_name=:fname, middle_name=:mname, last_name=:lname, author_id=:authorId WHERE profile_id=:profileId");
+            $this->db->bind(':fname', $data['firstname']);
+            $this->db->bind(':mname', $data['middlename']);
+            $this->db->bind(':lname', $data['lastname']);
+            $this->db->bind(':authorId',$data['authorId'] );
+            $this->db->bind(':profileId',$data['profileId'] );
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     }
 ?>

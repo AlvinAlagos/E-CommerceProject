@@ -1,19 +1,28 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
 
-    <div class="container"> 
+    <div class="container mb-5"> 
         <h1>Profile Page</h1>
-        <p>hello 
-
+        <p>
+            Welcome to your profile! You can find and update information about yourself, and find your own publications and comments.
         </p>
     </div>
 
-    <div class="container mb-5"> 
+    <div class="container mb-5">
         <h2>Information</h2>
-        <p>hello</p>
+        <div class='container'>
+            <?php 
+                $profile = $data['profile'];
+                echo "<div>First Name:$profile->first_name</div>";
+                echo "<div>Middle Name:$profile->first_name</div>";
+                echo "<div>Last Name:$profile->first_name</div>";
+            ?>
+            <a href='/Assignment2/Profile/editProfile ?>' >Edit Profile</a>
+        </div>
     </div>
 
     <div class="container mb-5"> 
         <h2>List of Publications</h2>
+        <div class='container'>
             <?php
                 if (!($data["publications"])) {
                     echo "No publications found...";
@@ -67,6 +76,7 @@
                     echo "</table>";
                 }
             ?>
+        </div>
     </div>
 
     <div class="container"> 
