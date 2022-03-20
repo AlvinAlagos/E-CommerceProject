@@ -8,12 +8,18 @@ class Home extends Controller
 
     public function index()
     {
-        $publications = $this->publicationModel->getPublications();
+        //if user has not searched for anything
+        if( !isset($_POST['searchTitle']) && !isset($_POST['searchContent']) && !isset($_POST['searchAuthor']) ) {
+            $publications = $this->publicationModel->getPublications();
+            
+            $data = [
+                "publications" => $publications
+            ];
 
-        $data = [
-            "publications" => $publications
-        ];
+            $this->view('Home/home', $data);
+        }
+        else {
 
-        $this->view('Home/home', $data);
+        }
     }
 }

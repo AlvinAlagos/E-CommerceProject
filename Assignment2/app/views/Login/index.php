@@ -21,6 +21,15 @@
             <div class="form-outline mb-4">
                 <button type="submit" name="login" class="btn btn-primary">Sign in</button>
             </div>
+
+            <?php
+                if(!empty($data['msg'])){
+                    echo '<div class="alert alert-danger" role="alert">'.
+                        $data['msg'].'
+                    </div>';
+                }
+            ?>
+
             <div class="container">
                 <a href='/Assignment2/Login/register'>Don't have an account?</a>  
             </div>

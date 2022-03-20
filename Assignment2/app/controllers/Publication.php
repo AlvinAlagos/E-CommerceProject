@@ -4,62 +4,68 @@
         public function __construct()
         {
             $this->publicationModel = $this->model('publicationModel');
-            $this->profileModel = $this->model('profileModel');
+            $this->commentModel = $this->model('commentModel');
         }
 
         public function index(){
-            $this->view('Home/home');
+            header('Location: /Assignment2/Home');
         }
 
-        //get the publication, using get (html url)
         public function getPublication($publicationId) {
+            //make sure publication is public, if not then check if user is writer 
+            //(writer can see if private, but not anyone else)
+            
+
             $data = [
-                "publication" => $this->publicationModel->getPublication($publicationId)
+                "publication" => $this->publicationModel->getPublication($publicationId),
+                "comments" => $this->commentModel->getCommentsByPublication($publicationId)
             ];
 
             $this->view('Publication/publication', $data);
         }
 
         public function createPublication() {
-            if (!isset($_SESSION['profile_id'])) {
-                header('Location: /Assignment2/Profile/create');
+            accountCreationRedirect();
+            
+            if(!isset($_POST['createPublication'])){
+                $this->view('Publication/createPublication');
             }
             else {
-                if(!isset($_POST['createPublication'])){
-                    $this->view('Publication/createPublication');
+                if (isset($_POST['status'])) {
+                    $status = $_POST['status'];
                 }
                 else {
-                    //getting profile from author id
-                    $status = trim($_POST['status']);
-                    if ($status != 1) {
-                        $status = 0;
-                    }
-    
-                    $data = [
-                        'title' => trim($_POST['title']),
-                        'profile_id' => $_SESSION['profile_id'],
-                        'text' => trim($_POST['text']),
-                        'status' => $status
-                    ];
-    
-                    if ($this->publicationModel->createPublication($data)) {
-                        echo 'Publishing...';
-                        echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
-                    }
+                    $status = '0';
+                }
+
+                $data = [
+                    'title' => trim($_POST['title']),
+                    'profile_id' => $_SESSION['profile_id'],
+                    'text' => trim($_POST['text']),
+                    'status' => $status
+                ];
+
+                if ($this->publicationModel->createPublication($data)) {
+                    echo 'Publishing...';
+                    echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
                 }
             }
         }
 
         public function editPublication($publicationId) {
+            //make sure logged in can edit
+
             $publication = $this->publicationModel->getPublication($publicationId);
             
             if(!isset($_POST['editPublication'])){
                 $this->view('Publication/editPublication', $publication);
             }
             else {
-                $status = trim($_POST['status']);
-                if ($status != 1) {
-                    $status = 0;
+                if (isset($_POST['status'])) {
+                    $status = $_POST['status'];
+                }
+                else {
+                    $status = '0';
                 }
 
                 $data = [
@@ -73,18 +79,15 @@
 
                 if ($this->publicationModel->editPublication($data)) {
                     echo 'Editing publication...';
-                    echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Profile">';
+                    echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
                 }
             }
         }
 
-        public function deletePublication($publicationId) {
-            if ($this->publicationModel->deletePublication($publicationId)) {
-                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Profile">';
-            }
-        }
-
         public function makePublicationPublic($publicationId) {
+            //make sure logged in can edit
+
+
             $publication = $this->publicationModel->getPublication($publicationId);
             $data = [
                 'title' => $publication->publication_title,
@@ -96,11 +99,14 @@
             ];
 
             if ($this->publicationModel->editPublication($data)) {
-                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Profile">';
+                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
             }
         }
 
         public function makePublicationPrivate($publicationId) {
+            //make sure logged in can edit
+
+
             $publication = $this->publicationModel->getPublication($publicationId);
             $data = [
                 'title' => $publication->publication_title,
@@ -112,6 +118,14 @@
             ];
 
             if ($this->publicationModel->editPublication($data)) {
+                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
+            }
+        }
+
+        public function deletePublication($publicationId) {
+            //make sure logged in can delete
+
+            if ($this->publicationModel->deletePublication($publicationId)) {
                 echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Profile">';
             }
         }

@@ -14,7 +14,7 @@
 
         public function getPublicationsByProfile($profileId) {
             //inner join to get profile and author information with publication
-            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE :profileid = publication.profile_id');
+            $this->db->query('SELECT * FROM publication WHERE :profileid = publication.profile_id ORDER BY timestamp');
             $this->db->bind(':profileid', $profileId);
             return $this->db->getResultSet();
         }

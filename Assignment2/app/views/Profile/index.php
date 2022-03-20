@@ -71,6 +71,28 @@
 
     <div class="container"> 
         <h2>List of Comments</h2>
+        <?php 
+            $comments = $data["comments"];
+            if (!($comments)) {
+                echo "No comments found...";
+            }
+            else {
+                foreach ($comments as $comment) {
+                    echo "<div class='container'>";
+                    echo "<h5>";
+                    echo "<a href='/Assignment2/Publication/getPublication/$comment->publication_id'>Comment</a> on $comment->publication_title on $comment->timestamp";
+                    
+                    echo " <a href='/Assignment2/Comment/editComment/$comment->publication_comment_id' role='button'>Edit</a> ";
+                    echo "<a href='/Assignment2/Comment/deleteComment/$comment->publication_comment_id' role='button'>Delete</a>";
+                    
+                    echo "</h5>";
+                    echo "<p>";
+                    echo $comment->publication_comment_text;
+                    echo "</p>";
+                    echo "</div>";
+                }
+            }
+        ?>
     </div>
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

@@ -23,18 +23,15 @@ class Login extends Controller
                 $password = $_POST['password'];
                 if (password_verify($password, $hashed_pass)) {
                     $this->createSession($user);
-                    
-                    // $data = ['msg' => "Welcome, $user->username!",];
-                    // $this->view('Home/home', $data);
 
                     echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home/">';
 
                 } else {
-                    $data = ['msg' => "Password incorrect! for $user->username",];
+                    $data = ['msg' => "Incorrect password for $user->username.",];
                     $this->view('Login/index', $data);
                 }
             } else {
-                $data = ['msg' => "User: " . $_POST['username'] . " does not exists",];
+                $data = ['msg' => "User " . $_POST['username'] . " does not exist.",];
                 $this->view('Login/index', $data);
             }
         }
@@ -53,6 +50,7 @@ class Login extends Controller
                     'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
                 ];
 
+                //validate data here
                 if($this->authorModel->createAuthor($data)) {
                     echo 'Please wait creating the account for '.trim($_POST['username']);
                     echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
@@ -60,7 +58,7 @@ class Login extends Controller
             }
             else {
                 $data = [
-                    'msg' => "User: ". $_POST['username'] ." already exists",
+                    'msg' => "User ". $_POST['username'] ." already exists!",
                 ];
 
                 $this->view('Login/register',$data);
@@ -75,14 +73,6 @@ class Login extends Controller
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/Assignment2/">';
     }
-
-    //check if needed
-    // public function createProfile($info)
-    // {
-    //     $username = $info['username'];
-    //     $authorId = $this->authorModel->getAuthorId($username);
-    //     $this->authorModel->createProfile($info, $username);
-    // }
 
     public function createSession($user)
     {
