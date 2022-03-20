@@ -8,18 +8,43 @@ class Home extends Controller
 
     public function index()
     {
-        //if user has not searched for anything
-        if( !isset($_POST['searchTitle']) && !isset($_POST['searchContent']) && !isset($_POST['searchAuthor']) ) {
-            $publications = $this->publicationModel->getPublications();
-            
+        $publications = $this->publicationModel->getPublications();
+        
+        $data = [
+            "publications" => $publications
+        ];
+
+        $this->view('Home/home', $data);
+    }
+
+    public function searchPublication() {
+        if (isset($_POST['searchTitle'])) {
+            $search = $_POST['search'];
+
+            $publications = $this->publicationModel->searchPublicationTitle($search);
+
             $data = [
-                "publications" => $publications
+                "publications" => $publications,
+                "filter" => "Titles similar to $search"
             ];
 
-            $this->view('Home/home', $data);
+            $this->view('Home/searchPublication', $data);
+        }
+        elseif (isset($_POST['searchContent'])) {
+
+        }
+        elseif (isset($_POST['searchAuthor'])) {
+
         }
         else {
+            $publications = $this->publicationModel->getPublications();
 
+            $data = [
+                "publications" => $publications,
+                "filter" => 'All publications'
+            ];
+
+            $this->view('Home/searchPublication', $data);
         }
     }
 }

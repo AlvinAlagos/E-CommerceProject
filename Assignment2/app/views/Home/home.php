@@ -1,9 +1,11 @@
 <?php require APPROOT . '/views/includes/header.php';?>
 
-    <div class="container">
+    <div class="container mb-4">
         <h1 class="display-1">Welcome to our blog</h1>
         <p>Read publications on our blog! All public publications are shown below, or search for one you know!</p>
-
+        <a class="btn btn-primary" href="/Assignment2/Home/searchPublication" role="button">Search for a publication</a>
+    </div>
+    <div class="container">
         <?php
             foreach($data["publications"] as $publication){
                 if ($publication->publication_status == 1) { //only shows if publication is visible

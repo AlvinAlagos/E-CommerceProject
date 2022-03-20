@@ -10,18 +10,21 @@
     <div class="container mb-5">
         <h2>Information</h2>
         <div class='container'>
-            <?php 
+            <?php
                 $profile = $data['profile'];
-                echo "<div>First Name:$profile->first_name</div>";
-                echo "<div>Middle Name:$profile->first_name</div>";
-                echo "<div>Last Name:$profile->first_name</div>";
+                echo "<div>First Name: $profile->first_name</div>";
+                echo "<div>Middle Name: $profile->middle_name</div>";
+                echo "<div>Last Name: $profile->last_name</div>";
             ?>
-            <a href='/Assignment2/Profile/editProfile ?>' >Edit Profile</a>
+            <a href='/Assignment2/Profile/editProfile'>Edit Profile</a>
         </div>
     </div>
 
     <div class="container mb-5"> 
         <h2>List of Publications</h2>
+        <div class='container mb-3'>
+            <a class="btn btn-primary" href="/Assignment2/Publication/createPublication" role="button">Post a publication!</a>
+        </div>
         <div class='container'>
             <?php
                 if (!($data["publications"])) {

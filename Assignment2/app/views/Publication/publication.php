@@ -2,15 +2,12 @@
     <?php
         $publication = $data["publication"];
 
-        echo "<div class='container'>";
+        echo "<div class='container mb-5'>";
         echo "<h1>$publication->publication_title</h1>";
 
         if (hasProfile() && $_SESSION['profile_id'] == $publication->profile_id) {
             echo "<div class='mb-1'>";
-            echo "This post was made by you! :D<br>You can also edit your post from your ";
-            echo "<a href='/Assignment2/Profile'>profile</a>";
-            echo " page.";
-            echo "</div>";
+            echo "This post was made by you! :D<br>You can also edit your post from your <a href='/Assignment2/Profile'>profile</a> page.</div>";
 
             echo "<div class='mb-3'>";
             echo "<a class='btn btn-primary mr-3' href='/Assignment2/Publication/editPublication/$publication->publication_id'>Edit</a>";

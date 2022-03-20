@@ -5,7 +5,7 @@
 
         <form action='' method='post' enctype="multipart/form-data">
             
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="text">Comment</label>
                 <textarea name="text" type="text" class="form-control" id="text"><?php echo $data->publication_comment_text; ?></textarea>
             </div>

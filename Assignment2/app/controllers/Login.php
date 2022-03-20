@@ -14,8 +14,6 @@ class Login extends Controller
         if (!isset($_POST['login'])) {
             $this->view('Login/index');
         } else {
-            // print_r("Hello");
-
             $user = $this->authorModel->getAuthor($_POST['username']);
 
             if ($user != null) {
