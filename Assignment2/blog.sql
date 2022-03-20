@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2022 at 08:36 AM
+-- Generation Time: Mar 20, 2022 at 05:13 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -64,7 +64,10 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`profile_id`, `first_name`, `middle_name`, `last_name`, `author_id`) VALUES
 (4, 'Denmar', '', 'Ermitano', 13),
-(6, 'Dmar', 'Law', 'Erm', 14);
+(6, 'Dmar', 'Law', 'Erm', 14),
+(11, 'Denmar', 'Lawrence', 'Ermitano', 15),
+(12, 'Denmar', 'Lawrence', 'Ermitano', 15),
+(13, 'Denmar', 'Lawrence', 'Ermitano', 15);
 
 -- --------------------------------------------------------
 
@@ -86,8 +89,9 @@ CREATE TABLE `publication` (
 --
 
 INSERT INTO `publication` (`publication_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`, `profile_id`) VALUES
-(1, 'The Great Void', 'v o i d .', '2022-03-09', 1, 4),
-(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4);
+(1, 'The Great Void', 'v o i d . . .', '2022-03-09', 0, 4),
+(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4),
+(9, 'brrt brrt aaaaaa11111', 'they got it backwards tryna catch em', '2022-03-19', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -98,10 +102,18 @@ INSERT INTO `publication` (`publication_id`, `publication_title`, `publication_t
 CREATE TABLE `publication_comment` (
   `publication_comment_id` int(11) NOT NULL,
   `publication_comment_text` varchar(255) NOT NULL,
-  `timestamp` date NOT NULL,
+  `timestamp` date NOT NULL DEFAULT current_timestamp(),
   `profile_id` int(11) NOT NULL,
   `publication_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `publication_comment`
+--
+
+INSERT INTO `publication_comment` (`publication_comment_id`, `publication_comment_text`, `timestamp`, `profile_id`, `publication_id`) VALUES
+(4, 'bahahahahah nice void. cold fire.', '2022-03-19', 6, 1),
+(5, 'shshshshshshshshshshshake that void.', '2022-03-19', 6, 1);
 
 --
 -- Indexes for dumped tables
@@ -150,19 +162,19 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

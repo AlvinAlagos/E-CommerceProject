@@ -3,7 +3,7 @@
 
         public function __construct()
         {
-            //profile, publication, comment mode
+            //profile, publication, comment model
             $this->profileModel = $this->model('profileModel');
             $this->publicationModel = $this->model('publicationModel');
             $this->commentModel = $this->model('commentModel');
@@ -34,7 +34,7 @@
                 ];
                 
                 if ($this->profileModel->createProfile($data)) {
-                    //echo 'Please wait creating profile for '.trim($_POST['username']);
+                    echo 'Please wait creating profile for '.trim($_POST['user_username']);
                     $this->updateSession();
                     echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Profile/index">';
                 }
