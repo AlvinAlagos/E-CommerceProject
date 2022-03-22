@@ -2,6 +2,7 @@
     <div class="container mb-5">
         <h1>Publication Search</h1>
         <p>Here, you can search by title, content or author.</p>
+        <a class="btn btn-primary" href="/Assignment2/Home" role="button">Go Back Home</a>
     </div>
     <div class="container mb-5">
         <form action='' method='post' enctype="multipart/form-data">
@@ -25,7 +26,7 @@
             echo "Current filter: ".$data['filter'];
         ?>
     </div>
-    <div class="container">
+    <div class="container mb-5">
         <?php
             foreach($data["publications"] as $publication){
                 if ($publication->publication_status == 1) { //only shows if publication is visible

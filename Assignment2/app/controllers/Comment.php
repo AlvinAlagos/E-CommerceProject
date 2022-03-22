@@ -13,9 +13,6 @@
         }
 
         public function createComment($publicationId) {
-            //make sure logged in can edit
-
-
             if(!isset($_POST['createComment'])){
                 $this->view('Comment/createComment');
             }
@@ -34,12 +31,14 @@
         }
 
         public function editComment($commentId) {
-            //make sure logged in can edit
-
-            
             $comment = $this->commentModel->getComment($commentId);
 
-            if(!isset($_POST['editComment'])){
+            //verify if same user
+            if ($comment->profile_id != $_SESSION['profile_id']) {
+                echo 'Unable to access comment.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
+            elseif(!isset($_POST['editComment'])){
                 $this->view('Comment/editComment', $comment);
             }
             else {

@@ -12,16 +12,22 @@
         }
 
         public function getPublication($publicationId) {
+            $publication = $this->publicationModel->getPublication($publicationId);
+
             //make sure publication is public, if not then check if user is writer 
             //(writer can see if private, but not anyone else)
-            
-
-            $data = [
-                "publication" => $this->publicationModel->getPublication($publicationId),
-                "comments" => $this->commentModel->getCommentsByPublication($publicationId)
-            ];
-
-            $this->view('Publication/publication', $data);
+            if ($publication->publication_status == 1 || $publication->profile_id == $_SESSION['profile_id']) {
+                $data = [
+                    "publication" => $publication,
+                    "comments" => $this->commentModel->getCommentsByPublication($publicationId)
+                ];
+    
+                $this->view('Publication/publication', $data);
+            }
+            else {
+                echo 'Unable to access publication.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
         }
 
         public function createPublication() {
@@ -53,11 +59,14 @@
         }
 
         public function editPublication($publicationId) {
-            //make sure logged in can edit
-
             $publication = $this->publicationModel->getPublication($publicationId);
             
-            if(!isset($_POST['editPublication'])){
+            //verify if same user
+            if ($publication->profile_id != $_SESSION['profile_id']) {
+                echo 'Unable to access publication.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
+            elseif(!isset($_POST['editPublication'])){
                 $this->view('Publication/editPublication', $publication);
             }
             else {
@@ -85,47 +94,63 @@
         }
 
         public function makePublicationPublic($publicationId) {
-            //make sure logged in can edit
-
-
             $publication = $this->publicationModel->getPublication($publicationId);
-            $data = [
-                'title' => $publication->publication_title,
-                'text' => $publication->publication_text,
-                'timestamp' => $publication->timestamp,
-                'status' => '1',
-                'profile_id' => $_SESSION['profile_id'],
-                'publication_id' => $publicationId
-            ];
 
-            if ($this->publicationModel->editPublication($data)) {
-                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
+            //verify if same user
+            if ($publication->profile_id != $_SESSION['profile_id']) {
+                echo 'Unable to access publication.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
+            else {
+                $data = [
+                    'title' => $publication->publication_title,
+                    'text' => $publication->publication_text,
+                    'timestamp' => $publication->timestamp,
+                    'status' => '1',
+                    'profile_id' => $_SESSION['profile_id'],
+                    'publication_id' => $publicationId
+                ];
+    
+                if ($this->publicationModel->editPublication($data)) {
+                    echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
+                }
             }
         }
 
         public function makePublicationPrivate($publicationId) {
-            //make sure logged in can edit
-
-
             $publication = $this->publicationModel->getPublication($publicationId);
-            $data = [
-                'title' => $publication->publication_title,
-                'text' => $publication->publication_text,
-                'timestamp' => $publication->timestamp,
-                'status' => '0',
-                'profile_id' => $_SESSION['profile_id'],
-                'publication_id' => $publicationId
-            ];
 
-            if ($this->publicationModel->editPublication($data)) {
-                echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
+            //verify if same user
+            if ($publication->profile_id != $_SESSION['profile_id']) {
+                echo 'Unable to access publication.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
+            else { 
+                $publication = $this->publicationModel->getPublication($publicationId);
+                $data = [
+                    'title' => $publication->publication_title,
+                    'text' => $publication->publication_text,
+                    'timestamp' => $publication->timestamp,
+                    'status' => '0',
+                    'profile_id' => $_SESSION['profile_id'],
+                    'publication_id' => $publicationId
+                ];
+
+                if ($this->publicationModel->editPublication($data)) {
+                    echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Publication/getPublication/'.$publicationId.'">';
+                }
             }
         }
 
         public function deletePublication($publicationId) {
-            //make sure logged in can delete
+            $publication = $this->publicationModel->getPublication($publicationId);
 
-            if ($this->publicationModel->deletePublication($publicationId)) {
+            //verify if same user
+            if ($publication->profile_id != $_SESSION['profile_id']) {
+                echo 'Unable to access publication.';
+                echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Home">';
+            }
+            elseif ($this->publicationModel->deletePublication($publicationId)) {
                 echo '<meta http-equiv="Refresh" content="0.5; url=/Assignment2/Profile">';
             }
         }
