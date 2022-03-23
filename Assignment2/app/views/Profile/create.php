@@ -13,6 +13,7 @@
             <div class="form-outline mb-4">
               <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="First Name" />
               <label class="form-label" for="fname">First Name</label>
+              <span class="invalid-feedback"><?php echo $data['fname_error']; ?> </span>
             </div>
 
             <div class="form-outline mb-4">
@@ -23,6 +24,7 @@
             <div class="form-outline mb-4">
               <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Last Name" />
               <label class="form-label" for="lname">Last Name</label>
+              <span class="invalid-feedback"><?php echo $data['lname_error']; ?> </span>
             </div>
 
             <div class="form-outline mb-4">

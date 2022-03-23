@@ -11,34 +11,25 @@
             <h3 class="mb-5">Register</h3>
 
             <div class="form-outline mb-4">
-              <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Username" />
+              <input type="text" id="username" name="username" class="form-control form-control-lg <?php echo (!empty($data['username_error'])) ? 'is-invalid' : ''; ?>" placeholder="Username" />
               <label class="form-label" for="username">Username</label>
-            </div>
-        <!-- 
-            <div class="form-outline mb-4">
-              <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="First Name" />
-              <label class="form-label" for="fname">First Name</label>
+              <span class="invalid-feedback"><?php echo $data['username_error']; ?> </span>
             </div>
 
             <div class="form-outline mb-4">
-              <input type="text" id="mname" name="mname" class="form-control form-control-lg" placeholder="Middle Name" />
-              <label class="form-label" for="mname">Middle Name</label>
-            </div>
-
-            <div class="form-outline mb-4">
-              <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Last Name" />
-              <label class="form-label" for="lname">Last Name</label>
-            </div> 
-        -->
-
-            <div class="form-outline mb-4">
-              <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Password" />
+              <input type="password" id="password" name="password" class="form-control form-control-lg <?php echo (!empty($data['password_len_error'])) ? 'is-invalid' : ''; ?>" placeholder="Password" />
               <label class="form-label" for="password">Password</label>
+              <span class="invalid-feedback"><?php echo $data['password_len_error']; ?> </span>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="password" id="passwordconfirm" name="passwordconfirm" class="form-control form-control-lg <?php echo (!empty($data['password_match_error'])) ? 'is-invalid' : ''; ?>" placeholder="Password" />
+              <label class="form-label" for="passwordconfirm">Confirm Password</label>
+              <span class="invalid-feedback"><?php echo $data['password_match_error']; ?> </span>
             </div>
             <div class="form-outline mb-4">
                 <button type="submit" name="signup" class="btn btn-primary">Sign up</button>
             </div>
-
+            
             <?php
                 if(!empty($data['msg'])){
                     echo '<div class="alert alert-danger" role="alert">'.

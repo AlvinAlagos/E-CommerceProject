@@ -13,7 +13,8 @@ class Login extends Controller
     {
         if (!isset($_POST['login'])) {
             $this->view('Login/index');
-        } else {
+        } 
+        else {
             $user = $this->authorModel->getAuthor($_POST['username']);
 
             if ($user != null) {
@@ -28,7 +29,8 @@ class Login extends Controller
                     $data = ['msg' => "Incorrect password for $user->username.",];
                     $this->view('Login/index', $data);
                 }
-            } else {
+            } 
+            else {
                 $data = ['msg' => "User " . $_POST['username'] . " does not exist.",];
                 $this->view('Login/index', $data);
             }
@@ -45,13 +47,21 @@ class Login extends Controller
             if($user == null){
                 $data = [
                     'username' => trim($_POST['username']),
+                    'password' => trim($_POST['password']),
+                    'password_confirm' => $_POST['passwordconfirm'],
                     'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                    'msg' => '',
+                    'username_error' => '',
+                    'password_match_error' => '',
+                    'password_len_error' => ''
                 ];
 
                 //validate data here
-                if($this->authorModel->createAuthor($data)) {
-                    echo 'Please wait creating the account for '.trim($_POST['username']);
-                    echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
+                if ($this->validate($data)) {
+                    if($this->authorModel->createAuthor($data)) {
+                        echo 'Please wait creating the account for '.trim($_POST['username']);
+                        echo '<meta http-equiv="Refresh" content="2; url=/Assignment2/Login/">';
+                    }
                 }
             }
             else {
@@ -59,8 +69,27 @@ class Login extends Controller
                     'msg' => "User ". $_POST['username'] ." already exists!",
                 ];
 
-                $this->view('Login/register',$data);
+                $this->view('Login/register', $data);
             }
+        }
+    }
+
+    public function validate($data) {
+        if (empty($data['username'])) {
+            $data['username_error'] = 'Username cannot be empty!';
+        }
+        if (strlen($data['password']) < 5) {
+            $data['password_len_error'] = 'Password has to be at least 5 characters.';
+        }
+        if ($data['password'] != $data['password_confirm']) {
+            $data['password_match_error'] = 'Passwords do not match.';
+        }
+
+        if (empty($data['username_error']) && empty($data['password_len_error']) && empty($data['password_match_error'])){
+            return true;
+        }
+        else {
+            $this->view('Login/register', $data);
         }
     }
 
