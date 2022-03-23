@@ -68,6 +68,7 @@ class Model
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+  
     public function getSingle(){
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_OBJ);
