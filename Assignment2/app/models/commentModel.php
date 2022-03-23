@@ -12,13 +12,13 @@
         }
 
         public function getCommentsByPublication($publicationId) {
-            $this->db->query('SELECT * FROM publication_comment INNER JOIN profile ON publication_comment.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_id=:publicationid ORDER BY timestamp');
+            $this->db->query('SELECT * FROM publication_comment INNER JOIN profile ON publication_comment.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_id=:publicationid ORDER BY timestamp DESC');
             $this->db->bind(':publicationid', $publicationId);
             return $this->db->getResultSet();
         }
 
         public function getCommentsByProfile($profileId) {
-            $this->db->query('SELECT * FROM publication_comment INNER JOIN publication ON publication.publication_id = publication_comment.publication_id WHERE publication_comment.profile_id=:profileid ORDER BY publication_comment.timestamp');
+            $this->db->query('SELECT * FROM publication_comment INNER JOIN publication ON publication.publication_id = publication_comment.publication_id WHERE publication_comment.profile_id=:profileid ORDER BY publication_comment.timestamp DESC');
             $this->db->bind(':profileid', $profileId);
             return $this->db->getResultSet();
         }

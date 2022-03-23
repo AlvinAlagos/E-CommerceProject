@@ -11,7 +11,7 @@
             <h3 class="mb-5">Create Profile</h3>
 
             <div class="form-outline mb-4">
-              <input type="text" id="fname" name="fname" class="form-control form-control-lg" placeholder="First Name" />
+              <input type="text" id="fname" name="fname" class="form-control form-control-lg <?php echo (!empty($data['fname_error'])) ? 'is-invalid' : ''; ?>" placeholder="First Name" />
               <label class="form-label" for="fname">First Name</label>
               <span class="invalid-feedback"><?php echo $data['fname_error']; ?> </span>
             </div>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-outline mb-4">
-              <input type="text" id="lname" name="lname" class="form-control form-control-lg" placeholder="Last Name" />
+              <input type="text" id="lname" name="lname" class="form-control form-control-lg <?php echo (!empty($data['lname_error'])) ? 'is-invalid' : ''; ?>" placeholder="Last Name" />
               <label class="form-label" for="lname">Last Name</label>
               <span class="invalid-feedback"><?php echo $data['lname_error']; ?> </span>
             </div>

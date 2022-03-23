@@ -13,13 +13,13 @@
         }
 
         public function getPublicationsByProfile($profileId) {
-            $this->db->query('SELECT * FROM publication WHERE :profileid = profile_id ORDER BY timestamp');
+            $this->db->query('SELECT * FROM publication WHERE :profileid = profile_id ORDER BY timestamp DESC');
             $this->db->bind(':profileid', $profileId);
             return $this->db->getResultSet();
         }
 
         public function getPublications() {
-            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id ORDER BY timestamp');
+            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id ORDER BY timestamp DESC');
             return $this->db->getResultSet();
         }
  
@@ -68,20 +68,20 @@
         }
 
         public function searchPublicationTitle($publicationTitle) {
-            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_title LIKE :title  ORDER BY timestamp');
+            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_title LIKE :title  ORDER BY timestamp DESC');
             $this->db->bind(':title', "%$publicationTitle%"); //to account for letters before or after search sequence
             return $this->db->getResultSet();
         }
 
         public function searchPublicationContent($publicationContent) {
-            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_text LIKE :publicationcontent ORDER BY timestamp');
+            $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id WHERE publication_text LIKE :publicationcontent ORDER BY timestamp DESC');
             $this->db->bind(':publicationcontent', "%$publicationContent%");
             return $this->db->getResultSet();
         }
 
         public function searchPublicationAuthor($author) {
             $this->db->query('SELECT * FROM publication INNER JOIN profile ON publication.profile_id = profile.profile_id INNER JOIN author ON profile.author_id = author.author_id 
-                    WHERE username LIKE :author OR first_name LIKE :author OR middle_name LIKE :author OR last_name LIKE :author ORDER BY timestamp');
+                    WHERE username LIKE :author OR first_name LIKE :author OR middle_name LIKE :author OR last_name LIKE :author ORDER BY timestamp DESC');
             $this->db->bind(':author', "%$author%");
             return $this->db->getResultSet();
         }

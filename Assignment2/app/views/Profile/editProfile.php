@@ -18,7 +18,7 @@
               <label class="form-label" for="lname">Last Name</label>
               <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name" value="<?php echo $data->last_name; ?>" />
             </div> 
-
+            
             <button type="submit" name='editProfile' class="btn btn-primary">Submit Changes</button>
         </form>
     </div>

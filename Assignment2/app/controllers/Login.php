@@ -4,9 +4,7 @@ class Login extends Controller
     public function __construct()
     {
         $this->authorModel = $this->model('authorModel');
-
-        //used to check if author has profile and add it to the session
-        $this->profileModel = $this->model('profileModel');
+        $this->profileModel = $this->model('profileModel'); //used to check if author has profile
     }
 
     public function index()
@@ -56,7 +54,6 @@ class Login extends Controller
                     'password_len_error' => ''
                 ];
 
-                //validate data here
                 if ($this->validate($data)) {
                     if($this->authorModel->createAuthor($data)) {
                         echo 'Please wait creating the account for '.trim($_POST['username']);
