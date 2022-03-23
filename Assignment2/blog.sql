@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2022 at 05:13 AM
+-- Generation Time: Mar 23, 2022 at 04:32 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -40,9 +40,7 @@ CREATE TABLE `author` (
 INSERT INTO `author` (`author_id`, `username`, `password_hash`) VALUES
 (13, 'getll8', '$2y$10$1RLKdplvoASHOnAe2/VnvuyatYk8Pmj17v3eI2zPLR6uHarAXg2VO'),
 (14, 'getll9', '$2y$10$kRgVQMEAiAG2oipReH0YZOG3QOUqL9.f4cCXHjhd3/FMTRdtw7K1K'),
-(15, 'getll10', '$2y$10$ifc4Jg2qrsVA3/PbapXbyuHw9szBasX7bhvZWrwy4qY4f8gqw1oyW'),
-(16, 'getll11', '$2y$10$4RzgmezIUPp2C58oPjXA2OLYKtvzjSune.Ye99nFmaft4e0LJWX9S'),
-(17, 'getll12', '$2y$10$LhFi97RVW/Jnqd/ym80N/es4ByCAieMtQKIkYHnNH/OCrl5SgKD8m');
+(15, 'getll10', '$2y$10$ifc4Jg2qrsVA3/PbapXbyuHw9szBasX7bhvZWrwy4qY4f8gqw1oyW');
 
 -- --------------------------------------------------------
 
@@ -63,11 +61,8 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`profile_id`, `first_name`, `middle_name`, `last_name`, `author_id`) VALUES
-(4, 'Denmar', '', 'Ermitano', 13),
-(6, 'Dmar', 'Law', 'Erm', 14),
-(11, 'Denmar', 'Lawrence', 'Ermitano', 15),
-(12, 'Denmar', 'Lawrence', 'Ermitano', 15),
-(13, 'Denmar', 'Lawrence', 'Ermitano', 15);
+(4, 'Alvin', '', 'Alagos', 13),
+(6, 'Dmar', 'Law', 'Erm', 14);
 
 -- --------------------------------------------------------
 
@@ -89,9 +84,10 @@ CREATE TABLE `publication` (
 --
 
 INSERT INTO `publication` (`publication_id`, `publication_title`, `publication_text`, `timestamp`, `publication_status`, `profile_id`) VALUES
-(1, 'The Great Void', 'v o i d . . .', '2022-03-09', 0, 4),
-(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 1, 4),
-(9, 'brrt brrt aaaaaa11111', 'they got it backwards tryna catch em', '2022-03-19', 1, 6);
+(1, 'The Great Void', 'v o i d . . . don\'t fall.', '2022-03-09', 1, 4),
+(2, 'Get sauced on', 'hello this is sauce.', '2022-03-16', 0, 4),
+(9, 'Brrt brrt', 'they got it backwards tryna catch em.', '2022-03-19', 1, 6),
+(11, 'getll out of the house', 'getll gets out of his house at 7 am. That means getll has to wake up at 6:30 am. The bus arrives. getll is early today.', '2022-03-20', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -113,7 +109,8 @@ CREATE TABLE `publication_comment` (
 
 INSERT INTO `publication_comment` (`publication_comment_id`, `publication_comment_text`, `timestamp`, `profile_id`, `publication_id`) VALUES
 (4, 'bahahahahah nice void. cold fire.', '2022-03-19', 6, 1),
-(5, 'shshshshshshshshshshshake that void.', '2022-03-19', 6, 1);
+(5, 'shshshshshshshshshshshake that void. the void is now shaken up. uh oh now it\'s mad.', '2022-03-19', 6, 1),
+(6, 'i let my butterfree, when my metapod hit level 10 i press b.', '2022-03-22', 4, 9);
 
 --
 -- Indexes for dumped tables
@@ -156,25 +153,25 @@ ALTER TABLE `publication_comment`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `publication_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
