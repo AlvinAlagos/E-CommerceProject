@@ -54,8 +54,9 @@
         <ul class="nav navbar-nav navbar-right">
             <?php
             if (isLoggedIn()) {
-            echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_username'].'</a></li>';
-            } 
+            echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '.'</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Profile/index "><i class="fa-solid fa-user-plus"></i>Account </a></li>';
+        } 
             else {
             echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/index "><i class="fa-solid fa-user-plus"></i>Login </a></li>
                 <li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/register"><i class="fa-solid fa-right-to-bracket"></i>Sign Up</a></li>';

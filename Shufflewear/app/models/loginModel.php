@@ -28,6 +28,19 @@ class loginModel{
             return false;
         }
     }
+
+    public function createSeller($user_id){
+        $this->db->query("INSERT INTO sellers (isBanned, userId) values(:isBanned,:userId)");
+        $this->db->bind(':isBanned', 0);
+        $this->db->bind(':userId', $user_id);
+
+        if($this->db->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
 
 

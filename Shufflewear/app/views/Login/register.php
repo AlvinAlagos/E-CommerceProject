@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-lg-6 mb-5 mb-lg-0">
-                <img src="https://images.pexels.com/photos/1868471/pexels-photo-1868471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="w-100 rounded-4 shadow-4" alt="" />
+                <img src="https://images.pexels.com/photos/1868471/pexels-photo-1868471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="w-100 rounded-4 shadow-4" alt=""/>
             </div>
         </div>
     </div>
