@@ -10,4 +10,12 @@
         }
       }
 
+      function isSeller(){
+        if(isset($_SESSION['seller_id'])){
+          return true;
+        } else {
+          return false;
+        }
+      }
+
 ?>

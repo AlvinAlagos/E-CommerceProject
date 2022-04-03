@@ -20,7 +20,7 @@ class Login extends Controller
                 
                 if (password_verify($password, $hashed_pass)) {
                     $this->createSession($user);
-
+                    echo 'Please wait creating the account for ' . trim($_SESSION['seller_id']);
                     echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Home/">';
                 } else {
                     echo 'Do not match ' .$hashed_pass;
@@ -36,7 +36,7 @@ class Login extends Controller
         if (!isset($_POST['signup'])) {
             $this->view('Login/register');
         } else {
-            $user = $this->loginModel->getuser($_POST['username']);
+            $user = $this->loginModel->getUser($_POST['username']);
             if ($user == null) {
                 $data = [
                     'username' => trim($_POST['username']),
@@ -63,6 +63,7 @@ class Login extends Controller
     public function logout() {
         unset($_SESSION['user_id']);
         unset($_SESSION['user_username']);
+        unset($_SESSION['seller_id']);
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/Shufflewear/">';
     }
@@ -70,6 +71,13 @@ class Login extends Controller
     public function createSession($user){
         $_SESSION['user_id'] = $user->userId;
         $_SESSION['user_username'] = $user->username;
+
+        $seller = $this->loginModel->getSeller($_SESSION['user_id']);
+
+        if($seller != null){
+            $_SESSION['seller_id'] = $seller->sellerId;
+        }
+        
     }
 }
 

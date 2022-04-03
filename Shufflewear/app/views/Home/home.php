@@ -24,6 +24,7 @@
 <?php require APPROOT . '/views/includes/header.php';
 ?>
 <div class="container">
+    
 
     <div class="about">
         <h1>About us</h1>
@@ -63,6 +64,8 @@
 
         </p>
     </div>
+
+
 
 </div>
 <?php require APPROOT . '/views/includes/footer.php'; ?>
