@@ -45,6 +45,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Shufflewear/Auction">Auction</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Shufflewear/Colors">Color Generator</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php

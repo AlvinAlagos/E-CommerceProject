@@ -53,6 +53,19 @@
                 return false;
             }
         }
+
+        public function editCartItem($data) {
+            $this->db->query("UPDATE cart SET quantity=:quantity WHERE cartId=:cartId");
+            $this->db->bind(':cartId', $data['cartId']);
+            $this->db->bind(':quantity', $data['quantity']);
+
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
 ?>
