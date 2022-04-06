@@ -20,7 +20,7 @@ class Login extends Controller
                 
                 if (password_verify($password, $hashed_pass)) {
                     $this->createSession($user);
-                    echo 'Please wait creating the account for ' . trim($_SESSION['seller_id']);
+                    //echo 'Please wait creating the account for ' . trim($_SESSION['seller_id']);
                     echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Home/">';
                 } else {
                     echo 'Do not match ' .$hashed_pass;
@@ -32,7 +32,6 @@ class Login extends Controller
 
     public function register()
     {
-
         if (!isset($_POST['signup'])) {
             $this->view('Login/register');
         } else {

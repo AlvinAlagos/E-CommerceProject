@@ -6,6 +6,7 @@ class Profile extends Controller
     public function __construct()
     {
         $this->loginModel = $this->model('loginModel');
+        $this->itemModel = $this->model('itemModel');
     }
 
     public function index()
@@ -13,7 +14,7 @@ class Profile extends Controller
 
         $data = [
             "user" => $this->loginModel->getUser($_SESSION['user_username']),
-            "inventory" => $this->loginModel->getItems($_SESSION['seller_id'])
+            "inventory" => $this->itemModel->getItems($_SESSION['seller_id'])
         ];
 
         $this->view('Profile/index', $data);
@@ -77,7 +78,7 @@ class Profile extends Controller
                 'sellerId' => $_SESSION['seller_id']
             ];
             // var_dump($data);
-            if ($this->loginModel->createItem($data)) {
+            if ($this->itemModel->createItem($data)) {
                 echo 'Your item has been added successfully!';
 
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
@@ -87,7 +88,7 @@ class Profile extends Controller
 
     public function updateItem($itemId)
     {
-        $item = $this->loginModel->getItem($itemId);
+        $item = $this->itemModel->getItem($itemId);
 
         if (!isset($_POST['add'])) {
             $this->view('Profile/updateItem', $item);
@@ -104,7 +105,7 @@ class Profile extends Controller
                 'sellerId' => $_SESSION['seller_id']
             ];
             // var_dump($data);
-            if ($this->loginModel->updateItem($data, $itemId)) {
+            if ($this->itemModel->updateItem($data, $itemId)) {
                 echo 'Your item has been added successfully!';
 
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
@@ -115,7 +116,7 @@ class Profile extends Controller
     public function deleteItem($itemId)
     {
 
-        if ($this->loginModel->deleteItem($itemId)) {
+        if ($this->itemModel->deleteItem($itemId)) {
             echo 'Your item has been deleted successfully!';
 
             echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
@@ -126,7 +127,7 @@ class Profile extends Controller
     public function getDetails($itemId)
     {
 
-        $item = $this->loginModel->getItem($itemId);
+        $item = $this->itemModel->getItem($itemId);
 
 
         $this->view('Profile/itemDetails', $item);
@@ -167,8 +168,8 @@ class Profile extends Controller
     }
 
 
-    public function createSellerSession($user)
+    public function createSellerSession($seller)
     {
-        $_SESSION['seller_id'] = $user->userId;
+        $_SESSION['seller_id'] = $seller->sellerId;
     }
 }

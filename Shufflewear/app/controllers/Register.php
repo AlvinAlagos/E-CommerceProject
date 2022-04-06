@@ -1,17 +1,14 @@
 <?php
+    class Register extends Controller{
 
-class Register extends Controller{
+        public function __construct()
+        {
+            
+        }
 
-    public function __construct()
-    {
-        
+        public function index()
+        {
+            $this->view('Login/register');
+        }
     }
-
-    public function index()
-    {
-        $this->view('Login/register');
-    }
-}
-
-
 ?> 

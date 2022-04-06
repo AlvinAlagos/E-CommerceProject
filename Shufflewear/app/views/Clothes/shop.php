@@ -11,10 +11,11 @@
     <div class="container" style="margin-top: 5%;">
         <div class="row row-cols-3">
             <?php
-            foreach($data['inventory'] as $inventory){
-                echo '<div class="col"><a href="/Shufflewear/Shop/description/'. $inventory->itemId . '"><img src="' . URLROOT . '/public/img/' . $inventory->img . '" width="60%"></a> <h4>'. $inventory->itemName .'</h4><h4>hello</h4></div>';
-            }
-                
+                foreach($data['inventory'] as $inventory){
+                    echo '<div class="col mb-5"><a href="/Shufflewear/Shop/description/'. $inventory->itemId . '"><img src="' . URLROOT . '/public/img/' . $inventory->img . '" width="60%"></a> <h4>'. $inventory->itemName .'</h4>';
+                    //echo '<h4>hello</h4>';
+                    echo '</div>';
+                }
             ?>
         </div>
     </div>  

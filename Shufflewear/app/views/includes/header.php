@@ -24,8 +24,6 @@
 
 <body>
 
-
-
     <!-- Background image -->
 
     <header style=" position: sticky !important; margin-top: 30px;">
@@ -51,8 +49,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     if (isLoggedIn()) {
+                        echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Cart/index "><i class="fa-solid fa-user-plus"></i>Cart </a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Wishlist/index "><i class="fa-solid fa-user-plus"></i>Wishlist </a></li>';
+                        echo '<li class="nav-item mr-5"><a class="nav-link" href="/Shufflewear/Profile/index "><i class="fa-solid fa-user-plus"></i>Account </a></li>';
                         echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  ' . '</a></li>';
-                        echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Profile/index "><i class="fa-solid fa-user-plus"></i>Account </a></li>';
                     } else {
                         echo '<li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/index "><i class="fa-solid fa-user-plus"></i>Login </a></li>
                 <li class="nav-item"><a class="nav-link" href="/Shufflewear/Login/register"><i class="fa-solid fa-right-to-bracket"></i>Sign Up</a></li>';
