@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-04-13T19:16:35.216Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36 OPR/85.0.4341.60" etag="PbgXidfneUx57BDuyz4z" version="17.4.4" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-13T19:21:26.323Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36 OPR/85.0.4341.60" etag="yqkrpb9qTrWLJfEMhSUE" version="17.4.4" type="github">
   <diagram id="7JhVoVxikH07F7QoD8FI" name="Page-2">
     <mxGraphModel dx="1258" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -385,15 +385,15 @@
             <mxRectangle width="110" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="66dwfi4fmswbgSh-Gq48-3" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="oi6qNUU9MiPh9IPBVdOW-74" vertex="1">
+        <mxCell id="68yfxhQP1hVeYwZNWPpp-31" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="oi6qNUU9MiPh9IPBVdOW-74">
           <mxGeometry y="210" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="66dwfi4fmswbgSh-Gq48-4" value="FK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;" parent="66dwfi4fmswbgSh-Gq48-3" vertex="1">
+        <mxCell id="68yfxhQP1hVeYwZNWPpp-32" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;" vertex="1" parent="68yfxhQP1hVeYwZNWPpp-31">
           <mxGeometry width="30" height="30" as="geometry">
             <mxRectangle width="30" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="66dwfi4fmswbgSh-Gq48-5" value="PreviousBidder" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" parent="66dwfi4fmswbgSh-Gq48-3" vertex="1">
+        <mxCell id="68yfxhQP1hVeYwZNWPpp-33" value="IsPaid" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" vertex="1" parent="68yfxhQP1hVeYwZNWPpp-31">
           <mxGeometry x="30" width="110" height="30" as="geometry">
             <mxRectangle width="110" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -625,6 +625,16 @@
           <mxGeometry width="100" height="100" relative="1" as="geometry">
             <mxPoint x="730" y="360" as="sourcePoint" />
             <mxPoint x="950" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="68yfxhQP1hVeYwZNWPpp-34" value="" style="fontSize=12;html=1;endArrow=ERzeroToMany;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=0;" edge="1" parent="oi6qNUU9MiPh9IPBVdOW-1" source="oi6qNUU9MiPh9IPBVdOW-41" target="oi6qNUU9MiPh9IPBVdOW-74">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="160" y="438" as="sourcePoint" />
+            <mxPoint x="310" y="643" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="780" />
+              <mxPoint x="890" y="780" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
