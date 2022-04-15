@@ -7,6 +7,7 @@ class Profile extends Controller
     {
         $this->loginModel = $this->model('loginModel');
         $this->itemModel = $this->model('itemModel');
+        $this->listingModel = $this->model('listingModel');
     }
 
     public function index()
@@ -71,9 +72,7 @@ class Profile extends Controller
             $data = [
                 'itemName' => trim($_POST['itemName']),
                 'description' => trim($_POST['description']),
-                'quantity' => trim($_POST['quantity']),
-                'price' => trim($_POST['price']),
-                'size' => trim($_POST['size']),
+                'color' => trim($_POST['color']),
                 'img' => $filename,
                 'sellerId' => $_SESSION['seller_id']
             ];
@@ -98,9 +97,7 @@ class Profile extends Controller
             $data = [
                 'itemName' => trim($_POST['itemName']),
                 'description' => trim($_POST['description']),
-                'quantity' => trim($_POST['quantity']),
-                'price' => trim($_POST['price']),
-                'size' => trim($_POST['size']),
+                'color' => trim($_POST['color']),
                 'img' => $filename,
                 'sellerId' => $_SESSION['seller_id']
             ];
@@ -131,6 +128,26 @@ class Profile extends Controller
 
 
         $this->view('Profile/itemDetails', $item);
+    }
+
+    public function addToListing($itemId){
+        if(!isset($_POST['list'])){
+            $this->view('Profile/addToListing');
+        }else{
+
+            $data = [
+                'quantity' => trim($_POST['quantity']),
+                'price' => trim($_POST['price']),
+                'itemId' => trim($itemId)
+            ];
+
+            // var_dump($data);
+            if ($this->listingModel->addItem($data)) {
+                echo 'Your item has been listed successfully!';
+
+                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
+            }
+        }
     }
 
     public function imageUpload()
