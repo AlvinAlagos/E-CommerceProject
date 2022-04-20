@@ -6,22 +6,28 @@
             
         }
 
-        public function index($colors = null)
+        public function index()
         {
-            $randomColors = $this->api_call("https://x-colors.herokuapp.com/api/random?number=3");
-
-            if ($colors == null) {
-                $colors = $randomColors;
+            $colors = $this->api_call("https://x-colors.herokuapp.com/api/random?number=3");
+            
+            if (!isset($_SESSION['color1']) || !isset($_SESSION['color1']) || !isset($_SESSION['color1']) ) {
+                $_SESSION['color1'] = $colors[0];
+                $_SESSION['color2'] = $colors[1];
+                $_SESSION['color3'] = $colors[2];
             }
-            else {
-                for ($i = 0; $i < 3; $i++) {
-                    if ($colors[$i] == null) {
-                        $colors[$i] = $randomColors[$i];
-                    } 
+            elseif (isset($_POST['rerandomize'])) {
+                if (isset($_POST['randomizeColor1'])) {
+                    $_SESSION['color1'] = $colors[0];
+                }
+                if (isset($_POST['randomizeColor2'])) {
+                    $_SESSION['color2'] = $colors[1];
+                }
+                if (isset($_POST['randomizeColor3'])) {
+                    $_SESSION['color3'] = $colors[2];
                 }
             }
 
-            $this->view('Colors/index', $colors);
+            $this->view('Colors/index');
         }
 
         public function api_call($url){ 
