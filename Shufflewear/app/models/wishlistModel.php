@@ -7,7 +7,7 @@
         }
 
         public function getWishlistItems($data) {
-            $this->db->query("SELECT * FROM wishlist INNER JOIN inventory on wishlist.itemId = inventory.itemId WHERE userId = :userId ");
+            $this->db->query("SELECT * FROM wishlist INNER JOIN inventory on wishlist.itemId = inventory.itemId INNER JOIN listing on listing.itemId = inventory.itemId WHERE userId = :userId ");
             $this->db->bind(':userId', $data['userId']);
 
             return $this->db->getResultSet();

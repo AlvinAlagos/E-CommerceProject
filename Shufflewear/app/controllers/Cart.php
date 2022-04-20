@@ -57,7 +57,7 @@
             }
             else {
                 $data = [
-                    'item' => $this->itemModel->getItem($item->itemId)
+                    'item' => $this->cartModel->getCartItem($data)
                 ];
                 
                 $this->view('Clothes/edit', $data);

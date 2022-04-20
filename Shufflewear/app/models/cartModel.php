@@ -8,22 +8,15 @@
 
         public function getCartItems($data) {
             //ambiguous quantity column from cart and inventory
-            $this->db->query("SELECT *, cart.quantity AS cart_quantity FROM cart INNER JOIN inventory on cart.itemId = inventory.itemId WHERE userId = :userId");
+            $this->db->query("SELECT *, cart.quantity AS cart_quantity FROM cart INNER JOIN inventory on cart.itemId = inventory.itemId INNER JOIN listing on listing.itemId = inventory.itemId WHERE userId = :userId");
             $this->db->bind(':userId', $data['userId']);
 
             return $this->db->getResultSet();
         }
 
         public function getCartItem($data) {
-            $this->db->query("SELECT * FROM cart WHERE cartId = :cartId");
+            $this->db->query("SELECT *, cart.quantity AS cart_quantity FROM cart INNER JOIN inventory on cart.itemId = inventory.itemId INNER JOIN listing on listing.itemId = inventory.itemId WHERE cartId = :cartId");
             $this->db->bind(':cartId', $data['cartId']);
-
-            return $this->db->getSingle();
-        }
-
-        public function getCartFromItem($data) {
-            $this->db->query("SELECT * FROM cart WHERE itemId = :itemId");
-            $this->db->bind(':itemId', $data['itemId']);
 
             return $this->db->getSingle();
         }

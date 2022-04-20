@@ -18,7 +18,6 @@
             <td>Name</td>
             <td>Price</td>
             <td>Available</td>
-            <td>Size</td>
             <td colspan="2" class="text-center">Actions</td>
         </tr>
 
@@ -28,8 +27,16 @@
                 echo '<td><div class="d-flex justify-content-center"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120"></div></td>';
                 echo "<td>$item->itemName</td>";
                 echo "<td >$$item->price</td>";
-                echo "<td>$item->quantity</td>";
-                echo "<td>$item->size</td>";
+                echo "<td>";
+                
+                if ($item->quantity > 0) {
+                    echo "Yes ";
+                }
+                else {
+                    echo "No ";
+                }
+
+                echo "($item->quantity)</td>";
                 echo "<td>
                 <a href='/Shufflewear/Wishlist/delete/$item->wishlistId'>Remove</a>
                 </td>";

@@ -48,32 +48,19 @@
                 'quantity' => 1
             ];
 
-            if ($this->cartModel->getCartFromItem($data) == null) {
-                if ($this->cartModel->addToCart($data)) {
-                    echo 'Adding item from wishlist...';
+            if ($this->cartModel->addToCart($data)) {
+                echo 'Adding item from wishlist...';
 
-                    $data=[
-                        'wishlistId' => $wishlistId
-                    ];
+                $data=[
+                    'wishlistId' => $wishlistId
+                ];
 
-                    if($this->wishlistModel->deleteFromWishlist($data)){
-                        echo 'Removing item from wishlist...';
-                        echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
-                    }
+                if($this->wishlistModel->deleteFromWishlist($data)){
+                    echo 'Removing item from wishlist...';
+                    echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
                 }
             }
-            else {
-                $user = [
-                    'userId' => $_SESSION['user_id']
-                ];
-
-                $data = [
-                    'error' => 'Cart already contains item.',
-                    'wishlist' => $this->wishlistModel->getWishlistItems($user)
-                ];
-
-                $this->view('Wishlist/index', $data);
-            }
+            
         }
     }
 ?>

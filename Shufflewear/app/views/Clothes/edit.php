@@ -14,6 +14,7 @@
                         <div class="text-center">
                             <?php echo '<h5 class="card-title">' . $item->itemName . '</h5>';
                             echo '<p class="text-muted mb-4">' . $item->description . '</p>';
+                            
                             ?>
                         </div>
 
@@ -38,7 +39,7 @@
                                 </select>
 
                                 <label for="quantity">Amount</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="<?php echo $item->quantity; ?>"<?php if ($item->quantity == 0) {echo 'disabled'; } ?>>
+                                <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo $item->cart_quantity ?>" min="1" max="<?php echo $item->quantity; ?>"<?php if ($item->quantity == 0) {echo 'disabled'; } ?>>
                                 
                             </div>
                         

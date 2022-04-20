@@ -31,40 +31,18 @@ class Shop extends Controller{
                 'quantity' => $_POST['quantity']
             ];
 
-            if ($this->cartModel->getCartFromItem($data) == null) {
-                if ($this->cartModel->addToCart($data)) {
-                    echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
-                }
+            if ($this->cartModel->addToCart($data)) {
+                echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
             }
-            else {
-                $data = [
-                    'error' => 'Cart already contains item.',
-                    'item' => $this->itemModel->getItem($itemId),
-                    'listInfo' => $this->listingModel->getItem($itemId)
-                ];
-
-                $this->view('Clothes/itemDescription', $data);
-            }
-
         }
         elseif (isset($_POST['wishlist'])){
             $data = [
                 'itemId' => $itemId,
                 'userId' => $_SESSION['user_id']
             ];
-            if ($this->wishlistModel->getWishlistFromItem($data) == null) {
-                if ($this->wishlistModel->addToWishlist($data)) {
-                    echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Wishlist">';
-                }
-            }
-            else {
 
-                $data = [
-                    'error' => 'Wishlist already contains item.',
-                    'item' => $this->itemModel->getItem($itemId),
-                    'listInfo' => $this->listingModel->getItem($itemId)
-                ];
-                $this->view('Clothes/itemDescription', $data);
+            if ($this->wishlistModel->addToWishlist($data)) {
+                echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Wishlist">';
             }
         }
         else {

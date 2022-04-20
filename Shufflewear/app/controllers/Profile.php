@@ -50,7 +50,7 @@ class Profile extends Controller
                 'firstName' => trim($_POST['firstName']),
                 'lastName' => trim($_POST['lastName']),
                 'email' => trim($_POST['email']),
-                'img' => $filename
+                'img' => ($filename) ? $filename : $profile->img
             ];
 
             if ($this->loginModel->editUser($data, $_SESSION['user_username'])) {
@@ -63,7 +63,6 @@ class Profile extends Controller
 
     public function addItem()
     {
-
         if (!isset($_POST['add'])) {
             $this->view('Profile/addItem');
         } else {
