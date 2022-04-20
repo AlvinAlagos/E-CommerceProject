@@ -7,13 +7,11 @@
         }
 
         public function createItem($data){
-            $this->db->query("INSERT INTO inventory(itemName,price, description, size, quantity, img, sellerId) 
-            values(:itemName,:price, :description, :size, :quantity, :img, :sellerId)");
+            $this->db->query("INSERT INTO inventory(itemName, description, color, img, sellerId) 
+            values(:itemName, :description, :color,:img, :sellerId)");
             $this->db->bind(':itemName', $data['itemName']);
-            $this->db->bind(':price', $data['price']);
             $this->db->bind(':description', $data['description']);
-            $this->db->bind(':quantity', $data['quantity']);
-            $this->db->bind(':size', $data['size']);
+            $this->db->bind(':color', $data['color']);
             $this->db->bind(':img', $data['img']);
             $this->db->bind(':sellerId', $data['sellerId']);
 
@@ -25,12 +23,10 @@
         }
 
         public function updateItem($data, $itemId){
-            $this->db->query("UPDATE inventory SET itemName=:itemName,price=:price, description=:description, size=:size,quantity=:quantity, img=:img, sellerId=:sellerId WHERE itemId=:itemId");
+            $this->db->query("UPDATE inventory SET itemName=:itemName,description=:description, color=:color,img=:img, sellerId=:sellerId WHERE itemId=:itemId");
             $this->db->bind(':itemName', $data['itemName']);
-            $this->db->bind(':price', $data['price']);
             $this->db->bind(':description', $data['description']);
-            $this->db->bind(':quantity', $data['quantity']);
-            $this->db->bind(':size', $data['size']);
+            $this->db->bind(':color', $data['color']);
             $this->db->bind(':img', $data['img']);
             $this->db->bind(':sellerId', $data['sellerId']);
             $this->db->bind(':itemId', $itemId);

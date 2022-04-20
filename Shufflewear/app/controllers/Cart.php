@@ -5,6 +5,7 @@
         {
             $this->cartModel = $this->model('cartModel');
             $this->itemModel = $this->model('itemModel');
+            
 
             if (!isset($_SESSION['user_id'])) {
                 header('Location: /Shufflewear/Login/index');

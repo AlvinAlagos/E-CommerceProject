@@ -7,11 +7,12 @@ class Shop extends Controller{
         $this->cartModel = $this->model('cartModel');
         $this->wishlistModel = $this->model('wishlistModel');
         $this->itemModel = $this->model('itemModel');
+        $this->listingModel = $this->model('listingModel');
     }
 
     public function index(){
         $data =[
-            "inventory" => $this->itemModel->getAllItems()
+            "listing" => $this->listingModel->getAllItems()
         ];
 
         $this->view('Clothes/shop', $data);
@@ -38,7 +39,8 @@ class Shop extends Controller{
             else {
                 $data = [
                     'error' => 'Cart already contains item.',
-                    'item' => $this->itemModel->getItem($itemId)
+                    'item' => $this->itemModel->getItem($itemId),
+                    'listInfo' => $this->listingModel->getItem($itemId)
                 ];
 
                 $this->view('Clothes/itemDescription', $data);
@@ -56,17 +58,19 @@ class Shop extends Controller{
                 }
             }
             else {
+
                 $data = [
                     'error' => 'Wishlist already contains item.',
-                    'item' => $this->itemModel->getItem($itemId)
+                    'item' => $this->itemModel->getItem($itemId),
+                    'listInfo' => $this->listingModel->getItem($itemId)
                 ];
-
                 $this->view('Clothes/itemDescription', $data);
             }
         }
         else {
             $data = [
-                'item' => $this->itemModel->getItem($itemId)
+                'item' => $this->itemModel->getItem($itemId),
+                'listInfo' => $this->listingModel->getItem($itemId)
             ];
             
             $this->view('Clothes/itemDescription', $data);

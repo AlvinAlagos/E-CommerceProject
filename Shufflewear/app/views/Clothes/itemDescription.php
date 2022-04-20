@@ -1,6 +1,8 @@
 <?php 
     require APPROOT . '/views/includes/header.php';
     $item = $data['item'];
+    $listInfo = $data['listInfo']
+    // print_r($listInfo);
 ?>
 
 <section style="background-color: #eee;">
@@ -19,10 +21,10 @@
 
                         <div class="mb-4">
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Quantity</span><span>' . $item->quantity . '</span>' ?>
+                                <?php echo '<span>Quantity</span><span>' . $listInfo->quantity . '</span>' ?>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Price</span><span>' . $item->price . '</span>' ?>
+                                <?php echo '<span>Price</span><span>' . $listInfo->price . '</span>' ?>
                             </div>
                         </div>
 
@@ -38,12 +40,12 @@
                                 </select>
 
                                 <label for="quantity">Amount</label>
-                                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="<?php echo $item->quantity; ?>"<?php if ($item->quantity == 0) {echo 'disabled'; } ?>>
+                                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" max="<?php echo $listInfo->quantity; ?>"<?php if ($listInfo->quantity == 0) {echo 'disabled'; } ?>>
                                 
                             </div>
                         
                             <div class="pt-1 mb-2">
-                                <button class="btn btn-dark btn-lg btn-block" type="submit" name="cart" <?php if ($item->quantity == 0) {echo 'disabled'; } ?> >Add to cart</button>
+                                <button class="btn btn-dark btn-lg btn-block" type="submit" name="cart" <?php if ($listInfo->quantity == 0) {echo 'disabled'; } ?> >Add to cart</button>
                             </div>
                             <div class="pt-1 mb-4">
                                 <button class="btn btn-dark btn-lg btn-block" type="submit" name="wishlist">Add to wishlist</button>

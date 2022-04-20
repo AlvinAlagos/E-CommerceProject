@@ -7,23 +7,10 @@
     <input type="text" name="itemName" class="form-control" id="itemName" placeholder="Item Name" value="<?php echo $data->itemName?>">
   </div>
   <div class="form-group">
-    <label for="quantity">Quantity</label>
-    <input type="number" class="form-control" name="quantity" id="quantity" placeholder="0" value="<?php echo $data->quantity?>">
+    <label for="quantity">Color</label>
+    <input type="text" class="form-control" name="color" id="color" placeholder="Color" value="<?php echo $data->color?>">
   </div>
-  <div class="form-group">
-    <label for="price">Price</label>
-    <input type="text" name="price" class="form-control" id="price" placeholder="Price (X.XX)"value="<?php echo $data->price?>">
-  </div>
-  <div class="form-group">
-    <label for="sizes">Size</label>
-    <select class="form-control" id="sizes" name="size">
-      <option>X-small</option>
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
-      <option>X-Large</option>
-    </select>
-  </div>
+
   <div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control" name="description" id="description" rows="3" ><?php echo $data->description?></textarea>
