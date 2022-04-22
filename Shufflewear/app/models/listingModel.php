@@ -11,7 +11,6 @@
             $this->db->bind(':quantity', $data['quantity']);
             $this->db->bind(':price', $data['price']);
             $this->db->bind(':itemId', $data['itemId']);
-           
 
             if ($this->db->execute()) {
                 return true;
@@ -20,6 +19,7 @@
             }
         }
 
+        //unused
         public function getItemInfo($itemId){
             $this->db->query("SELECT * FROM inventory i, listing l WHERE l.itemId = :itemId AND i.itemId = :itemId AND l.itemId = i.itemId; ");
             return $this->db->getResultSet();

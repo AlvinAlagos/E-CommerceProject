@@ -16,7 +16,7 @@
         <?php
             foreach($data["cart"] as $item){
                 echo "<tr>";
-                echo '<td><div class="d-flex justify-content-center"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120"></div></td>';
+                echo '<td><div class="d-flex justify-content-center" style="height: 130px;"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120" style="object-fit: contain;"></div></td>';
                 echo "<td>$item->itemName</td>";
                 echo "<td >$$item->price</td>";
                 echo "<td>$item->cart_quantity</td>";

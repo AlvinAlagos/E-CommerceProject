@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/includes/header.php';
 ?>
-<div class="container">
+<div class="container mt-5">
     <form  method="post"  action="">
         <table class="table">
             <thead>
@@ -10,7 +10,7 @@
                 <th scope="col">Randomize</th>
                 </tr>
             </thead>
-
+            
             <tbody>
                 <tr>
                 <th scope="row">Top</th>

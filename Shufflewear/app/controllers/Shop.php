@@ -27,7 +27,7 @@ class Shop extends Controller{
             $data = [
                 'itemId' => $itemId,
                 'userId' => $_SESSION['user_id'],
-                'size' => $_POST['size'],           //only include if putting size in cart, then check quantity of all
+                'size' => $_POST['size'],
                 'quantity' => $_POST['quantity']
             ];
 
@@ -47,6 +47,7 @@ class Shop extends Controller{
         }
         else {
             $data = [
+                //change this later, inner join in model and get from listing only
                 'item' => $this->itemModel->getItem($itemId),
                 'listInfo' => $this->listingModel->getItem($itemId)
             ];

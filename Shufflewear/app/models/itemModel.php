@@ -8,7 +8,7 @@
 
         public function createItem($data){
             $this->db->query("INSERT INTO inventory(itemName, description, color, img, sellerId) 
-            values(:itemName, :description, :color,:img, :sellerId)");
+            values(:itemName, :description, :color, :img, :sellerId)");
             $this->db->bind(':itemName', $data['itemName']);
             $this->db->bind(':description', $data['description']);
             $this->db->bind(':color', $data['color']);

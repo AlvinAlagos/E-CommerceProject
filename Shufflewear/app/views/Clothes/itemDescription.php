@@ -51,14 +51,6 @@
                                 <button class="btn btn-dark btn-lg btn-block" type="submit" name="wishlist">Add to wishlist</button>
                             </div>
                         </form>
-                        <?php
-                            if (isset($data['error'])) {
-                                echo 
-                                    '<div class="alert alert-danger" role="alert">'.
-                                        $data['error'].'
-                                    </div>';
-                            }
-                        ?>
                     </div>
                 </div>
             </div>

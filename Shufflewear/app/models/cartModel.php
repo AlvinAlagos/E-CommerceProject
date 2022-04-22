@@ -22,10 +22,11 @@
         }
 
         public function addToCart($data) {
-            $this->db->query("INSERT INTO cart (itemId, userId, quantity) values (:itemId, :userId, :quantity)");
+            $this->db->query("INSERT INTO cart (itemId, userId, quantity, size) values (:itemId, :userId, :quantity, :size)");
             $this->db->bind(':itemId', $data['itemId']);
             $this->db->bind(':userId', $data['userId']);
             $this->db->bind(':quantity', $data['quantity']);
+            $this->db->bind(':size', $data['size']);
 
             if ($this->db->execute()){
                 return true;
@@ -48,9 +49,10 @@
         }
 
         public function editCartItem($data) {
-            $this->db->query("UPDATE cart SET quantity=:quantity WHERE cartId=:cartId");
+            $this->db->query("UPDATE cart SET quantity=:quantity, size=:size WHERE cartId=:cartId");
             $this->db->bind(':cartId', $data['cartId']);
             $this->db->bind(':quantity', $data['quantity']);
+            $this->db->bind(':size', $data['size']);
 
             if ($this->db->execute()){
                 return true;

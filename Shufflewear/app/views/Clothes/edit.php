@@ -30,12 +30,12 @@
                         <form action='' method='post'>
                             <div class="form-group mb-5">
                                 <label for="sizes">Size</label>
-                                <select class="form-control" id="sizes" name="size" <?php if ($item->quantity == 0) {echo 'disabled'; } ?>>
-                                    <option>X-small</option>
-                                    <option>Small</option>
-                                    <option>Medium</option>
-                                    <option>Large</option>
-                                    <option>X-Large</option>
+                                <select class="form-control" id="sizes" name="size"<?php if ($item->quantity == 0) {echo 'disabled'; } ?>>
+                                    <option <?php if ($item->size == "X-small") echo "selected";?>>X-small</option>
+                                    <option <?php if ($item->size == "Small") echo "selected";?>>Small</option>
+                                    <option <?php if ($item->size == "Medium") echo "selected";?>>Medium</option>
+                                    <option <?php if ($item->size == "Large") echo "selected";?>>Large</option>
+                                    <option <?php if ($item->size == "X-Large") echo "selected";?>>X-Large</option>
                                 </select>
 
                                 <label for="quantity">Amount</label>
