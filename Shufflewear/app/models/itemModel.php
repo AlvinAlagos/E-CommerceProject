@@ -38,6 +38,30 @@
             }
         }
 
+        public function updateIsListed($itemId){
+            $this->db->query("UPDATE inventory SET isListed=:isListed WHERE itemId=:itemid");
+            $this->db->bind(':isListed', 1);
+            $this->db->bind(':itemid', $itemId);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function removeIsListed($itemId){
+            $this->db->query("UPDATE inventory SET isListed=:isListed WHERE itemId=:itemid");
+            $this->db->bind(':isListed', 0);
+            $this->db->bind(':itemid', $itemId);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function deleteItem($itemId){
             $this->db->query("DELETE FROM inventory WHERE itemId=:itemId");
             $this->db->bind(":itemId", $itemId);

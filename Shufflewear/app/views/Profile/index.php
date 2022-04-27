@@ -30,6 +30,7 @@
                             echo '<a href="/Shufflewear/Profile/registerSeller " class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Become a seller</a>';
                         } else {
                             echo '<a href="/Shufflewear/Profile/addItem" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true">Add item</a>';
+                            echo '<a href="/Shufflewear/Profile/addItem" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true">No Seller</a>';
                         }
                         ?>
                     </div>
@@ -67,9 +68,17 @@
                 <a href='/Shufflewear/Profile/deleteItem/$inventory->itemId'>Delete</a>
                 </td>";
 
-        echo "<td>
-                <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'>Sell</a>
-                </td>";
+                if($inventory->isListed == 0){
+                    echo "<td>
+                    <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'> List for sale</a>
+                    </td>";
+                    echo "</tr>";
+                }else{
+                    echo "<td>
+                    <a href='/Shufflewear/Profile/removeFromListing/$inventory->itemId'>Remove Item for sale</a>
+                    </td>";
+                     echo "</tr>";
+                }
 
         echo "<td>
                 <a href='/Shufflewear/Profile/addToAuction/$inventory->itemId'>Auction</a>

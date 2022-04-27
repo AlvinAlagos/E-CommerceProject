@@ -32,7 +32,7 @@
             }
         ?>
     </table>
-
+    <a href="/Shufflewear/Checkout" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true" style="float:right;">Checkout</a>
     </div>
 
 <?php require APPROOT . '/views/includes/footer.php';

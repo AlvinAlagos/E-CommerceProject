@@ -131,23 +131,33 @@ class Profile extends Controller
     }
 
     public function addToListing($itemId){
-        if (!isset($_POST['list'])) {
+        if(!isset($_POST['list'])){
             $this->view('Profile/addToListing');
-        }
-        else {
+        }else{
 
             $data = [
                 'quantity' => trim($_POST['quantity']),
                 'price' => trim($_POST['price']),
                 'itemId' => trim($itemId)
             ];
-
+           
             // var_dump($data);
-            if ($this->listingModel->addItem($data)) {
+            if ( $this->itemModel->updateIsListed($itemId)) {
+                $this->listingModel->addItem($data);
                 echo 'Your item has been listed successfully!';
 
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
             }
+        }
+    }
+
+    public function removeFromListing($itemId){
+       
+        if ( $this->itemModel->removeIsListed($itemId)) {
+            $this->listingModel->deleteListing($itemId);
+            echo 'Your item has been unlisted successfully!';
+
+            echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
         }
     }
 
