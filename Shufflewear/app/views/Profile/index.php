@@ -47,7 +47,7 @@
     <tr>
         <td>Item</td>
         <td>Color</td>
-        <td colspan="4" class="text-center"> Actions</td>
+        <td colspan="5" class="text-center"> Actions</td>
     </tr>
     <?php
     foreach ($data["inventory"] as $inventory) {
@@ -58,23 +58,31 @@
 
         echo "<td>$inventory->color</td>";
         echo "<td>
-                <a href='/Shufflewear/Profile/getDetails/$inventory->itemId'> Details</a>
+                <a href='/Shufflewear/Profile/getDetails/$inventory->itemId'>Details</a>
                 </td>";
         echo "<td>
-                <a href='/Shufflewear/Profile/updateItem/$inventory->itemId'> Update</a>
+                <a href='/Shufflewear/Profile/updateItem/$inventory->itemId'>Update</a>
                 </td>";
         echo "<td>
-                <a href='/Shufflewear/Profile/deleteItem/$inventory->itemId'> Delete</a>
+                <a href='/Shufflewear/Profile/deleteItem/$inventory->itemId'>Delete</a>
                 </td>";
 
         echo "<td>
-                <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'> List for sale</a>
+                <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'>Sell</a>
+                </td>";
+
+        echo "<td>
+                <a href='/Shufflewear/Profile/addToAuction/$inventory->itemId'>Auction</a>
                 </td>";
         echo "</tr>";
     }
 
     ?>
-
 </table>
+
+<!-- add table for listings -->
+
+<!-- add table for auctions -->
+
 <?php require APPROOT . '/views/includes/footer.php';
 ?>

@@ -8,6 +8,7 @@ class Profile extends Controller
         $this->loginModel = $this->model('loginModel');
         $this->itemModel = $this->model('itemModel');
         $this->listingModel = $this->model('listingModel');
+        $this->auctionModel = $this->model('auctionModel');
     }
 
     public function index()
@@ -130,9 +131,10 @@ class Profile extends Controller
     }
 
     public function addToListing($itemId){
-        if(!isset($_POST['list'])){
+        if (!isset($_POST['list'])) {
             $this->view('Profile/addToListing');
-        }else{
+        }
+        else {
 
             $data = [
                 'quantity' => trim($_POST['quantity']),
@@ -187,5 +189,28 @@ class Profile extends Controller
     public function createSellerSession($seller)
     {
         $_SESSION['seller_id'] = $seller->sellerId;
+    }
+
+    public function addToAuction($itemId) {
+        if (!isset($_POST['auction'])) {
+            $this->view('Profile/addToAuction');
+        }
+        else {
+            $data = [
+                'startingBid' => trim($_POST['startingBid']),
+                'currentBid' => 0, //no bids have been made
+                'buyNowPrice' => trim($_POST['buyNowPrice']),
+                'startDate' => trim($_POST['startDate']),
+                'endDate' => trim($_POST['endDate']),
+                'itemId' => trim($itemId)
+            ];
+
+            //var_dump($data);
+            if ($this->auctionModel->addToAuction($data)) {
+                echo 'Your item has been put on auction successfully!';
+
+                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
+            }
+        }
     }
 }
