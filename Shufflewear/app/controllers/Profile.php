@@ -213,4 +213,31 @@ class Profile extends Controller
             }
         }
     }
+
+    public function updateAuction($auctionId) {
+        $auction = $this->auctionModel->getAuction($auctionId);
+
+        if (!isset($_POST['updateAuction'])) {
+            $this->view('Profile/updateAuction', $auction);
+        }
+        else {
+            $data = [
+                'auctionId' => $auctionId,
+                'startingBid' => trim($_POST['startingBid']),
+                'currentBid' => $auction->currentBid, //seller cannot adjust current bid
+                'buyNowPrice' => trim($_POST['buyNowPrice']),
+                'startDate' => trim($_POST['startDate']),
+                'endDate' => trim($_POST['endDate']),
+                'currentBidder' => $auction->currentBidder, //cannot change bidder
+                'itemId' => $auction->itemId //item must stay the same to avoid fraud
+            ];
+
+            //var_dump($data);
+            if ($this->auctionModel->updateAuction($data)) {
+                echo 'Your item has been put on auction successfully!';
+
+                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
+            }
+        }
+    }
 }
