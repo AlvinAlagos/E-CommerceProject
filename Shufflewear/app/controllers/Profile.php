@@ -240,4 +240,12 @@ class Profile extends Controller
             }
         }
     }
+
+    public function deleteAuction($auctionId) {
+        if ($this->auctionModel->deleteAuction($auctionId)) {
+            echo 'Your auction has been deleted successfully!';
+
+            echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
+        }
+    }
 }

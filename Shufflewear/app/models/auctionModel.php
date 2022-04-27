@@ -54,5 +54,17 @@
                 return false;
             }
         }
+
+        public function deleteAuction($auctionId) {
+            $this->db->query("DELETE FROM auction WHERE auctionId=:auctionId");
+            $this->db->bind(':auctionId', $auctionId);
+            
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 ?>
