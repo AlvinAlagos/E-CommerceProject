@@ -34,6 +34,10 @@
             }
         }
 
+        
+
+        
+
         public function moveToCart($wishlistId) {
             $data = [
                 'wishlistId' => $wishlistId

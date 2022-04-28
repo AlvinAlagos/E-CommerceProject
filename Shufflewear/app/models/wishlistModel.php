@@ -52,6 +52,18 @@
             }
         }
 
+        public function deleteItemFromWishlist($itemId) {
+            $this->db->query("DELETE FROM wishlist WHERE itemId=:itemId");
+            $this->db->bind(':itemId', $itemId);
+
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public function moveToCart($data) {
             $this->cartModel = $this->model('cartModel');
             $this->itemModel = $this->model('itemModel');

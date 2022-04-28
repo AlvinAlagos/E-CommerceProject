@@ -11,11 +11,21 @@ class Shop extends Controller{
     }
 
     public function index(){
-        $data =[
-            "listing" => $this->listingModel->getAllItems()
-        ];
+        if(!isset($_POST['filter']) || !isset($_POST['Color'])){
+            $data =[
+                "listing" => $this->listingModel->getAllItems()
+            ];
+            $this->view('Clothes/shop', $data);
+        }else{
+            $color=$_POST['Color'];
+            $data =[
+                "listing" => $this->listingModel->getAllFilteredItems($color)
+            ];
 
-        $this->view('Clothes/shop', $data);
+            $this->view('Clothes/shop', $data);
+        }
+        
+
     }
 
     public function description($itemId){

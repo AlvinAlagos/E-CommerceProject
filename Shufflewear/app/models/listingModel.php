@@ -51,6 +51,12 @@
             $this->db->query("SELECT * FROM listing l , inventory i WHERE l.itemId = i.itemId; ");
             return $this->db->getResultSet();
         }
+
+        public function getAllFilteredItems($color){
+            $this->db->query("SELECT * FROM inventory i, listing l WHERE l.itemId = i.itemId AND i.color =:color");
+            $this->db->bind(':color', $color);
+            return $this->db->getResultSet();
+        }
         
         public function getQuantity($itemId){
             $this->db->query("SELECT quantity FROM listing WHERE itemId =:itemId");

@@ -7,27 +7,19 @@
         <tr>
             <td>Item</td>
             <td>Name</td>
-            <td>Price</td>
             <td>Quantity</td>
-            <td>Size</td>
-            <td colspan="2" class="text-center">Actions</td>
+            <td>Date</td>
+            
         </tr>
 
         <?php
-        foreach ($data["cart"] as $item) {
+        foreach ($data["purchase"] as $item) {
             echo "<tr>";
             echo '<td><div class="d-flex justify-content-center" style="height: 130px;"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120" style="object-fit: contain;"></div></td>';
             echo "<td>$item->itemName</td>";
-            echo "<td >$$item->price</td>";
-            echo "<td>$item->cart_quantity</td>";
-            echo "<td>$item->size</td>";
-            echo "<td>
-                <a href='/Shufflewear/Cart/delete/$item->cartId'>Remove</a>
-                </td>";
-            echo "<td>
-                <a href='/Shufflewear/Cart/edit/$item->cartId'>Edit</a>
-                </td>";
-            echo "</tr>";
+            echo "<td >$$item->purchase_quantity</td>";
+            echo "<td>$item->purchaseDate</td>";
+            
         }
         ?>
     </table>

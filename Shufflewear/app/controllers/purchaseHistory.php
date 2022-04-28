@@ -10,7 +10,7 @@
         public function index()
         {
             $data = [
-                'purchase' => $this->purchaseModel->getPurchaseHistory(),
+                'purchase' => $this->purchaseModel->getPurchaseHistoryNItem(),
             ];
 
             $this->view('PurchaseHistory/purchaseHistory', $data);

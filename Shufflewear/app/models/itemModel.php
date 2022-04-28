@@ -50,6 +50,18 @@
             }
         }
 
+        public function removeSellerId($itemId){
+            $this->db->query("UPDATE inventory SET sellerId=:sellerId WHERE itemId=:itemid");
+            $this->db->bind(':sellerId', null);
+            $this->db->bind(':itemid', $itemId);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function removeIsListed($itemId){
             $this->db->query("UPDATE inventory SET isListed=:isListed WHERE itemId=:itemid");
             $this->db->bind(':isListed', 0);

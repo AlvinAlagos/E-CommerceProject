@@ -68,7 +68,7 @@ class Checkout extends Controller{
                     
                 }
                 
-                // $this->cartModel->clearUserCart($_SESSION['user_id']);
+                $this->cartModel->clearUserCart($_SESSION['user_id']);
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Checkout/succesfulPayment">';
             // }
             

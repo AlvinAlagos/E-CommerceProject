@@ -23,10 +23,10 @@ class purchaseModel
         }
     }
 
-    public function getPurchaseHistory()
+    public function getPurchaseHistoryNItem()
     {
-        $this->db->query("SELECT * FROM purchaseHistory WHERE userId=:userId");
-        $this->db->bind(':itemId', $_SESSION['user_id']);
+        $this->db->query("SELECT *, purchaseHistory.quantity AS purchase_quantity FROM purchaseHistory INNER JOIN inventory on purchaseHistory.itemId = inventory.itemId  WHERE userId = :userId");
+        $this->db->bind(':userId', $_SESSION['user_id']);
         return $this->db->getResultSet();
     }
 

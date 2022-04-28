@@ -17,14 +17,22 @@ class Profile extends Controller
     public function index()
     {
 
-        $data = [
-            "user" => $this->loginModel->getUser($_SESSION['user_username']),
-            "inventory" => $this->itemModel->getItems($_SESSION['seller_id']),
-            //"listings" => $this->listingModel->getListings($_SESSION['seller_id']),
-            "auctions" => $this->auctionModel->getAuctions($_SESSION['seller_id'])
-        ];
+        if(!isset($_SESSION['seller_id'])){
+            $data = [
+                "user" => $this->loginModel->getUser($_SESSION['user_username'])
+            ];
 
-        $this->view('Profile/index', $data);
+            $this->view('Profile/index', $data);
+        }else{
+            $data = [
+                "user" => $this->loginModel->getUser($_SESSION['user_username']),
+                "inventory" => $this->itemModel->getItems($_SESSION['seller_id']),
+                //"listings" => $this->listingModel->getListings($_SESSION['seller_id']),
+                "auctions" => $this->auctionModel->getAuctions($_SESSION['seller_id'])
+            ];
+    
+            $this->view('Profile/index', $data);
+        }
     }
 
     public function registerSeller()
@@ -56,7 +64,7 @@ class Profile extends Controller
             if ( $this->itemModel->removeIsListed($item->itemId)) {
                 $this->listingModel->deleteListing($item->itemId);       
             }
-            $this->itemModel->deleteItem($item->itemId);
+            $this->itemModel->removeSellerId($item->itemId);
         }
         
         if($this->loginModel->deleteSeller($_SESSION['user_id'])){

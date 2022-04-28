@@ -73,5 +73,18 @@
                 return false;
             }
         }
+
+        //deletes auction based off itemId for removeSeller
+        public function deleteItemFromAuction($itemId) {
+            $this->db->query("DELETE FROM auction WHERE itemId=:itemId");
+            $this->db->bind(':itemId', $itemId);
+            
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 ?>

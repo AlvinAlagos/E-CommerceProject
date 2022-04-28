@@ -75,6 +75,8 @@
         <td colspan="5" class="text-center"> Actions</td>
     </tr>
     <?php
+    if(isset($_SESSION['seller_id'])){
+
     foreach ($data["inventory"] as $inventory) {
         echo "<tr>";
         echo '<td>
@@ -106,8 +108,8 @@
                 <a href='/Shufflewear/Auction/addToAuction/$inventory->itemId'>Auction</a>
                 </td>";
         echo "</tr>";
+        }
     }
-
     ?>
 </table>
 
@@ -123,6 +125,8 @@
         <td colspan="3" class="text-center"> Actions</td>
     </tr>
     <?php
+    if(isset($_SESSION['seller_id'])){
+
         foreach ($data["auctions"] as $auction) {
             echo "<tr>";
             echo '<td>
@@ -139,9 +143,9 @@
                     <a href='/Shufflewear/Auction/deleteAuction/$auction->auctionId'>Delete</a>
                     </td>";
         }
-
+    }
     ?>
-</table>
+</table>    
 
 
 
