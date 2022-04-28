@@ -13,7 +13,7 @@ class Auction extends Controller{
             'auctions' => $this->auctionModel->getAllAuctions()
         ];
 
-        $this->view('Auction/auction');
+        $this->view('Auction/auction', $data);
     }
 
     public function addToAuction($itemId) {
