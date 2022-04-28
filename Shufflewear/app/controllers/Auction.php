@@ -39,6 +39,11 @@ class Auction extends Controller{
         }
     }
 
+    public function getDetails($auctionId) {
+        $auction = $this->auctionModel->getAuction($auctionId);
+        $this->view('Auction/auctionDetails', $auction);
+    }
+
     public function updateAuction($auctionId) {
         $auction = $this->auctionModel->getAuction($auctionId);
 

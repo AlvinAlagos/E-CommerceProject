@@ -2,14 +2,15 @@
 ?>
 
 <form method='post' action=''style="width: 75%; position:center; margin:auto; margin-top:5%;"  enctype="multipart/form-data" >
+    
     <div class="form-group">
         <label for="quantity">Color</label>
-        <input type="text" class="form-control" name="color" id="color" placeholder="Color" value="<?php echo $data->color ?>" disabled>
+        <input type="text" class="form-control" name="color" id="color" placeholder="Color" value="<?php echo $data->color ?>">
     </div>
 
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea class="form-control" name="description" id="description" rows="3" disabled><?php echo $data->description?></textarea>
+        <textarea class="form-control" name="description" id="description" rows="3"><?php echo $data->description?></textarea>
     </div>
 
     <div class="form-group">
@@ -19,7 +20,7 @@
 
     <div class="form-group">
         <label for="currentBid">Current Bid</label>
-        <input type="number" step="0.01" class="form-control" name="currentBid" id="currentBid" value="<?php echo $data->currentBid ?>" disabled>
+        <input type="number" step="0.01" class="form-control" name="currentBid" id="currentBid" value="<?php echo $data->currentBid ?>">
     </div>
 
     <div class="form-group">
@@ -37,9 +38,8 @@
         <input type="date" name="endDate" class="form-control" id="endDate" value="<?php echo $data->endDate ?>">
     </div>
 
-    <div class="pt-1 mb-4">
-        <button class="btn btn-dark btn-lg btn-block" type="submit" name="updateAuction">Update Auction</button>
-    </div>
+    
+    <a href="/Shufflewear/Profile/index" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true" style="margin-top: 10px;" >Back</a>
 </form>
 
 

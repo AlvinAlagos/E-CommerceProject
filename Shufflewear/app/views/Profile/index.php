@@ -106,13 +106,13 @@
                 </td>';
 
             echo "<td>
-                    <a href='/Shufflewear/Auction/getDetails/$inventory->itemId'>Details</a>
+                    <a href='/Shufflewear/Auction/getDetails/$auction->auctionId'>Details</a>
                     </td>";
             echo "<td>
-                    <a href='/Shufflewear/Auction/updateAuction/$inventory->itemId'>Update</a>
+                    <a href='/Shufflewear/Auction/updateAuction/$auction->auctionId'>Update</a>
                     </td>";
             echo "<td>
-                    <a href='/Shufflewear/Auction/deleteAuction/$inventory->itemId'>Delete</a>
+                    <a href='/Shufflewear/Auction/deleteAuction/$auction->auctionId'>Delete</a>
                     </td>";
         }
 
