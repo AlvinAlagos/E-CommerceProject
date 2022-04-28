@@ -68,17 +68,15 @@
                 <a href='/Shufflewear/Profile/deleteItem/$inventory->itemId'>Delete</a>
                 </td>";
 
-                if($inventory->isListed == 0){
-                    echo "<td>
-                    <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'> List for sale</a>
-                    </td>";
-                    echo "</tr>";
-                }else{
-                    echo "<td>
-                    <a href='/Shufflewear/Profile/removeFromListing/$inventory->itemId'>Remove Item for sale</a>
-                    </td>";
-                     echo "</tr>";
-                }
+        if($inventory->isListed == 0){
+            echo "<td>
+            <a href='/Shufflewear/Profile/addToListing/$inventory->itemId'> List for sale</a>
+            </td>";
+        }else{
+            echo "<td>
+            <a href='/Shufflewear/Profile/removeFromListing/$inventory->itemId'>Remove Item for sale</a>
+            </td>";
+        }
 
         echo "<td>
                 <a href='/Shufflewear/Profile/addToAuction/$inventory->itemId'>Auction</a>
