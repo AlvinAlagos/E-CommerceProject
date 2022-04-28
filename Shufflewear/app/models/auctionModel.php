@@ -12,6 +12,13 @@
             return $this->db->getResultSet();
         }
 
+        public function getAuctions($sellerId) {
+            $this->db->query("SELECT * FROM auction INNER JOIN inventory on auction.itemId = inventory.itemId WHERE sellerId=:sellerId");
+            $this->db->bind(':sellerId', $sellerId);
+
+            return $this->db->getResultSet();
+        }
+
         public function getAuction($auctionId) {
             $this->db->query("SELECT * FROM auction INNER JOIN inventory on auction.itemId = inventory.itemId WHERE auctionId=:auctionId");
             $this->db->bind(':auctionId', $auctionId);

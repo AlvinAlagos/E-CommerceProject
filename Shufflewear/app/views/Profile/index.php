@@ -79,7 +79,7 @@
         }
 
         echo "<td>
-                <a href='/Shufflewear/Profile/addToAuction/$inventory->itemId'>Auction</a>
+                <a href='/Shufflewear/Auction/addToAuction/$inventory->itemId'>Auction</a>
                 </td>";
         echo "</tr>";
     }
@@ -89,7 +89,40 @@
 
 <!-- add table for listings -->
 
+
+
 <!-- add table for auctions -->
+
+<table class="table table-bordered" style="width: 50%; margin-left:auto; margin-right:auto;">
+    <tr>
+        <td>Item</td>
+        <td colspan="3" class="text-center"> Actions</td>
+    </tr>
+    <?php
+        foreach ($data["auctions"] as $auction) {
+            echo "<tr>";
+            echo '<td>
+                    <div class="d-flex align-items-center"><img class="rounded-circle" src="' . URLROOT . '/public/img/' . $auction->img . '" width="30"><span class="ml-2">' . $auction->itemName . '</span></div>
+                </td>';
+
+            echo "<td>
+                    <a href='/Shufflewear/Auction/getDetails/$inventory->itemId'>Details</a>
+                    </td>";
+            echo "<td>
+                    <a href='/Shufflewear/Auction/updateAuction/$inventory->itemId'>Update</a>
+                    </td>";
+            echo "<td>
+                    <a href='/Shufflewear/Auction/deleteAuction/$inventory->itemId'>Delete</a>
+                    </td>";
+        }
+
+    ?>
+</table>
+
+
+
+
+
 
 <?php require APPROOT . '/views/includes/footer.php';
 ?>
