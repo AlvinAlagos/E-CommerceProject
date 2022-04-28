@@ -4,45 +4,83 @@ class Checkout extends Controller{
 
     public function __construct()
     {
-        $this->cartModel = $this->model('cartModel');
+            $this->cartModel = $this->model('cartModel');
             $this->loginModel = $this->model('loginmodel');
+            $this->listingModel = $this->model('listingModel');
             $this->itemModel = $this->model('itemModel');
+            $this->purchaseModel = $this->model('purchaseModel');
     }
     public function index()
     {
-        $user = [
-            'userId' => $_SESSION["user_id"]
-        ];
-
-        $data = [
-            'cart' => $this->cartModel->getCartItems($user),
-            'user' => $this->loginModel->getUser($_SESSION['user_username'])
-        ];
-
-      
-        $this->view('Checkout/index', $data);
-    }
-
-    public function makePayment(){
         if(!isset($_POST['payment'])){
-            $this->view('Checkout/index');
-        }else{
-            $data = [
-                'address' => trim($_POST['address']),
-                'number' => trim($_POST['number']),
-                'cardNumber' => trim($_POST['cardNumber']),
-                'cardName' => trim($_POST['cardName']),
-                'expDate' => trim($_POST['expDate']),
-                'code' => trim($_POST['code']),
-                'address_error' => '',
-                'number_error' => '',
-                'cardNumber_error' => '',
-                'cardName_error' => '',
-                'expDate_error' => '',
-                'code_error' => ''
+            $user = [
+                'userId' => $_SESSION["user_id"]
             ];
+    
+            $data = [
+                'cart' => $this->cartModel->getCartItems($user),
+                'user' => $this->loginModel->getUser($_SESSION['user_username'])
+            ];
+
+            $this->view('Checkout/index', $data);
+            
+        }else{
+            // $data = [
+            //     'address' => trim($_POST['address']),
+            //     'number' => trim($_POST['number']),
+            //     'cardNumber' => trim($_POST['cardNumber']),
+            //     'cardName' => trim($_POST['cardName']),
+            //     'expDate' => trim($_POST['expDate']),
+            //     'code' => trim($_POST['code']),
+            //     'address_error' => '',
+            //     'number_error' => '',
+            //     'cardNumber_error' => '',
+            //     'cardName_error' => '',
+            //     'expDate_error' => '',
+            //     'code_error' => ''
+            // ];
+            
+
+            //  if($this->validateData($data)){
+                $user = [
+                    'userId' => $_SESSION['user_id']
+                ];
+                $items = [
+                    'cart' => $this->cartModel->getCartItems($user)
+                ];
+               
+
+                foreach($items['cart'] as $item){
+                    $listingQuantity = $this->listingModel->getQuantity($item->itemId);
+                    $updatedQuantity = $listingQuantity->quantity - $item->cart_quantity;
+                    $info = [
+                        'itemId' => $item->itemId,
+                        'userId' => $_SESSION['user_id'],
+                        'date' => date('Y/m/d'),
+                        'quantity' => $item->cart_quantity,
+                        'updatedQuantity' =>$updatedQuantity
+                    ];
+
+                  
+                    
+                    $this->purchaseModel->addPurchase($info);
+                    $this->listingModel->updateQuantity($info);
+                    
+                }
+                
+                // $this->cartModel->clearUserCart($_SESSION['user_id']);
+                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Checkout/succesfulPayment">';
+            // }
+            
+            
         }
     }
+
+    public function succesfulPayment(){
+        $this->view('Checkout/Success');
+    }
+
+   
 
     public function validateData($data){
         if(empty($data['address'])){
@@ -65,7 +103,7 @@ class Checkout extends Controller{
         }
        
         else{
-            $this->view('Login/create',$data);
+            $this->view('Checkout/index',$data);
         }
     }
 

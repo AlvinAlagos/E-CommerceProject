@@ -30,6 +30,17 @@
             }
         }
 
+        public function updateQuantity($data){
+            $this->db->query("UPDATE listing SET quantity=:quantity WHERE itemId=:itemId");
+            $this->db->bind(":itemId", $data['itemId']);
+            $this->db->bind(":quantity", $data['updatedQuantity']);
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         //unused
         public function getItemInfo($itemId){
             $this->db->query("SELECT * FROM inventory i, listing l WHERE l.itemId = :itemId AND i.itemId = :itemId AND l.itemId = i.itemId; ");
@@ -39,6 +50,12 @@
         public function getAllItems(){
             $this->db->query("SELECT * FROM listing l , inventory i WHERE l.itemId = i.itemId; ");
             return $this->db->getResultSet();
+        }
+        
+        public function getQuantity($itemId){
+            $this->db->query("SELECT quantity FROM listing WHERE itemId =:itemId");
+            $this->db->bind(':itemId', $itemId);
+            return $this->db->getSingle();
         }
 
         public function getItem($itemId){

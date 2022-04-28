@@ -30,7 +30,31 @@
                             echo '<a href="/Shufflewear/Profile/registerSeller " class="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded" data-abc="true">Become a seller</a>';
                         } else {
                             echo '<a href="/Shufflewear/Profile/addItem" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true">Add item</a>';
-                            echo '<a href="/Shufflewear/Profile/addItem" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded" data-abc="true">No Seller</a>';
+                            echo '<button type="button" class="m-t-10 waves-effect waves-dark btn btn-dark btn-md btn-rounded btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Dissmis as seller
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deleteModalLabel">Confirm</h5>
+                                  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p> Are you sure you want to no longer particpate as seller on 
+                                  Shufflewear? All items in your inventory will be deleted along with your listed and aunctioned items.</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                  <a href="/Shufflewear/Profile/removeSeller" class="btn btn-primary">Yes</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>';
                         }
                         ?>
                     </div>

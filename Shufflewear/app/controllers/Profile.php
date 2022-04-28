@@ -9,6 +9,9 @@ class Profile extends Controller
         $this->itemModel = $this->model('itemModel');
         $this->listingModel = $this->model('listingModel');
         $this->auctionModel = $this->model('auctionModel');
+        $this->cartModel = $this->model('cartModel');
+        $this->wishlistModel = $this->model('wishlistModel');
+        $this->auctionModel = $this->model('auctionModel');
     }
 
     public function index()
@@ -36,6 +39,30 @@ class Profile extends Controller
                 echo 'Your id is ' . $_SESSION['seller_id'];
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
             }
+        }
+    }
+
+    public function removeSeller()
+    {
+        $data = [
+            "items" => $this->itemModel->getItems($_SESSION['seller_id'])
+        ];
+
+        foreach($data['items'] as $item){
+            $this->cartModel->deleteItemFromCart($item->itemId);
+            $this->wishlistModel->deleteItemFromWishlist($item->itemId);
+            $this->auctionModel->deleteItemFromAuction($item->itemId);
+
+            if ( $this->itemModel->removeIsListed($item->itemId)) {
+                $this->listingModel->deleteListing($item->itemId);       
+            }
+            $this->itemModel->deleteItem($item->itemId);
+        }
+        
+        if($this->loginModel->deleteSeller($_SESSION['user_id'])){
+            echo 'You have been revoked as seller!';
+            unset($_SESSION['seller_id']);
+            echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
         }
     }
 

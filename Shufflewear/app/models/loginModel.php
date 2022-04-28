@@ -71,6 +71,19 @@ class loginModel
         }
     }
 
+    
+    public function deleteSeller($userId)
+    {
+        $this->db->query("DELETE FROM sellers WHERE userId =:userId");    
+        $this->db->bind(':userId', $userId);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //Items
     // public function createItem($data){

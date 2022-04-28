@@ -48,6 +48,31 @@
             }
         }
 
+        
+        public function clearUserCart($userId) {
+            $this->db->query("DELETE FROM cart WHERE userId=:userId");
+            $this->db->bind(':userId', $userId);
+
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public function deleteItemFromCart($itemId) {
+            $this->db->query("DELETE FROM cart WHERE itemId=:itemId");
+            $this->db->bind(':itemId', $itemId);
+
+            if ($this->db->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public function editCartItem($data) {
             $this->db->query("UPDATE cart SET quantity=:quantity, size=:size WHERE cartId=:cartId");
             $this->db->bind(':cartId', $data['cartId']);
