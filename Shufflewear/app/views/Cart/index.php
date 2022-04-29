@@ -18,7 +18,7 @@
                     echo "<tr>";
                     echo '<td><div class="d-flex justify-content-center" style="height: 130px;"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120" style="object-fit: contain;"></div></td>';
                     echo "<td>$item->itemName</td>";
-                    echo "<td >$$item->price</td>";
+                    echo "<td>".sprintf('$%.2F', $item->price)."</td>";
                     echo "<td>$item->cart_quantity</td>";
                     echo "<td>$item->size</td>";
                     echo "<td>

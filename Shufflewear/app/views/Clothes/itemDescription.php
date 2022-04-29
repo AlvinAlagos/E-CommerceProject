@@ -24,7 +24,7 @@
                                 <?php echo '<span>Quantity</span><span>' . $listInfo->quantity . '</span>' ?>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Price</span><span>' . $listInfo->price . '</span>' ?>
+                                <?php echo '<span>Price</span><span>' . sprintf('$%.2F', $listInfo->price) . '</span>' ?>
                             </div>
                         </div>
 

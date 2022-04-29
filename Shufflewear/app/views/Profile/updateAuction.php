@@ -14,17 +14,17 @@
 
     <div class="form-group">
         <label for="startingBid">Starting Bid</label>
-        <input type="number" step="0.01" class="form-control" name="startingBid" id="startingBid" placeholder="0.00" value="<?php echo $data->startingBid ?>">
+        <input type="number" step="0.01" class="form-control" name="startingBid" id="startingBid" placeholder="0.00" value="<?php echo sprintf('%.2F', $data->startingBid) ?>">
     </div>
 
     <div class="form-group">
         <label for="currentBid">Current Bid</label>
-        <input type="number" step="0.01" class="form-control" name="currentBid" id="currentBid" value="<?php echo $data->currentBid ?>" disabled>
+        <input type="number" step="0.01" class="form-control" name="currentBid" id="currentBid" value="<?php echo sprintf('%.2F', $data->currentBid) ?>" disabled>
     </div>
 
     <div class="form-group">
         <label for="buyNowPrice">Buy Now Price</label>
-        <input type="number" step="0.01" class="form-control" name="buyNowPrice" id="buyNowPrice" placeholder="0.00" value="<?php echo $data->buyNowPrice ?>">
+        <input type="number" step="0.01" class="form-control" name="buyNowPrice" id="buyNowPrice" placeholder="0.00" value="<?php echo sprintf('%.2F', $data->buyNowPrice) ?>">
     </div>
 
     <div class="form-group">

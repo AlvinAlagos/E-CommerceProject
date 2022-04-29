@@ -92,7 +92,7 @@ $user = $data['user'];
             foreach ($data["cart"] as $items) {
               echo ' <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                  ' . $items->itemName . '
-                <span>' . $items->price  . 'x' . $items->cart_quantity . '</span>
+                <span>' . sprintf('%.2F', $items->price)  . 'x' . $items->cart_quantity . '</span>
               </li>';
 
               $total += $items->price * $items->cart_quantity;
@@ -106,7 +106,7 @@ $user = $data['user'];
                   <p class="mb-0">(including VAT)</p>
                 </strong>
               </div>
-              <span><strong><?php echo $total; ?></strong></span>
+              <span><strong><?php echo sprintf('%.2F', $total); ?></strong></span>
             </li>
           </ul>
 
