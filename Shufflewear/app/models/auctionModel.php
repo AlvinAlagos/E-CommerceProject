@@ -7,7 +7,7 @@
         }
 
         public function getAllAuctions() {
-            $this->db->query("SELECT * FROM auction INNER JOIN inventory on auction.itemId = inventory.itemId");
+            $this->db->query("SELECT * FROM auction INNER JOIN inventory on auction.itemId = inventory.itemId ORDER BY endDate");
 
             return $this->db->getResultSet();
         }
