@@ -27,19 +27,19 @@
 
                             <?php if ($auction->currentBid == 0) { ?>
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Starting At</span><span>' . $auction->startingBid . '</span>' ?>
+                                <?php echo '<span>Starting At</span><span>$' . sprintf('%.2F', $auction->startingBid) . '</span>' ?>
                             </div>
 
                             <?php } else { ?>
 
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Current Bid</span><span>' . $auction->currentBid . '</span>' ?>
+                                <?php echo '<span>Current Bid</span><span>$' . sprintf('%.2F', $auction->currentBid) . '</span>' ?>
                             </div>
 
                             <?php } ?>
 
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Buy Now</span><span>' . $auction->buyNowPrice . '</span>' ?>
+                                <?php echo '<span>Buy Now</span><span>$' . sprintf('%.2F', $auction->buyNowPrice) . '</span>' ?>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                                 <!-- ENTER BID -->
                                 <label for="newBid">Enter Bid</label>
                                 <input type="number" class="form-control" id="newBid" name="newBid" step="0.01" 
-                                    value="<?php if ($available) { echo ($auction->currentBid != 0) ? ($auction->currentBid + 0.01) : $auction->startingBid; } ?>" 
+                                    value="<?php if ($available) { echo ($auction->currentBid != 0) ? sprintf('%.2F', $auction->currentBid + 0.01) : sprintf('%.2F', $auction->startingBid); } ?>" 
                                     min="<?php echo ($auction->currentBid != 0) ? ($auction->currentBid + 0.01) : $auction->startingBid; ?>" 
                                     max="<?php $auction->buyNowPrice ?>" <?php if (!$available) {echo 'disabled'; } ?>>
                             </div>
