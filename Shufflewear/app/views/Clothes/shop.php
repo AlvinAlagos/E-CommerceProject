@@ -39,7 +39,7 @@
                 //also check if there are any listings set
                 foreach($data['listing'] as $listing) {
                     echo '<div class="col mb-5 text-center" style="height: 350px;">
-                            <a href="/Shufflewear/Shop/description/'. $listing->itemId . '"><img src="' . URLROOT . '/public/img/' . $listing->img . '" width="60%" style="object-fit: contain; height: 300px; border: 1px solid rgb(200,200,200); background-color: rgb(245,245,245);"></a>
+                            <a href="/Shufflewear/Shop/description/'. $listing->listingId . '"><img src="' . URLROOT . '/public/img/' . $listing->img . '" width="60%" style="object-fit: contain; height: 300px; border: 1px solid rgb(200,200,200); background-color: rgb(245,245,245);"></a>
                             <h4 class="mt-3">'. $listing->itemName .'</h4>';
                     echo '</div>';
                 }

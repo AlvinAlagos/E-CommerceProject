@@ -1,8 +1,8 @@
 <?php 
     require APPROOT . '/views/includes/header.php';
-    $item = $data['item'];
-    $listInfo = $data['listInfo']
-    // print_r($listInfo);
+    //$item = $data['item'];
+    $listInfo = $data['listInfo'];
+    //print_r($listInfo);
 ?>
 
 <section style="background-color: #eee;">
@@ -11,11 +11,11 @@
             <div class="col-md-8 col-lg-6 col-xl-4">
                 <div class="card text-black">
                     <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-                    <?php echo '<img src="' . URLROOT . '/public/img/' . $item->img . '" class="card-img-top" alt="Apple Computer"/>'; ?>
+                    <?php echo '<img src="' . URLROOT . '/public/img/' . $listInfo->img . '" class="card-img-top" alt="Apple Computer"/>'; ?>
                     <div class="card-body">
                         <div class="text-center">
-                            <?php echo '<h5 class="card-title">' . $item->itemName . '</h5>';
-                            echo '<p class="text-muted mb-4">' . $item->description . '</p>';
+                            <?php echo '<h5 class="card-title">' . $listInfo->itemName . '</h5>';
+                            echo '<p class="text-muted mb-4">' . $listInfo->description . '</p>';
                             ?>
                         </div>
 

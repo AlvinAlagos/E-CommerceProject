@@ -6,6 +6,13 @@
             $this->db = new Model;
         }
 
+        public function getListing($listingId) {
+            $this->db->query("SELECT * FROM listing INNER JOIN inventory on listing.itemId = inventory.itemId WHERE listingId = :listingId");
+            $this->db->bind(':listingId', $listingId);
+
+            return $this->db->getSingle();
+        }
+
         public function addItem($data){
             $this->db->query("INSERT INTO listing(quantity, price, itemId)  VALUES(:quantity, :price, :itemId)");
             $this->db->bind(':quantity', $data['quantity']);
@@ -64,10 +71,9 @@
             return $this->db->getSingle();
         }
 
-        public function getItem($itemId){
-            $this->db->query("SELECT * FROM listing WHERE itemId =:itemId");
-            $this->db->bind(':itemId', $itemId);
-            return $this->db->getSingle();
-        }
-
+        // public function getItem($itemId){
+        //     $this->db->query("SELECT * FROM listing WHERE itemId =:itemId");
+        //     $this->db->bind(':itemId', $itemId);
+        //     return $this->db->getSingle();
+        // }
     }
