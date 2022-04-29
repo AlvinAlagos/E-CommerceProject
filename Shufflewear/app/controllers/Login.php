@@ -78,6 +78,7 @@ class Login extends Controller
             if ($user == null) {
                 $data = [
                     'username' => trim($_POST['username']),
+                    'password' => trim($_POST['pass']),
                     'password_hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT),
                     'firstname' => trim($_POST['firstname']),
                     'lastname' => trim($_POST['lastname']),
@@ -90,7 +91,12 @@ class Login extends Controller
                     'email_error' => ''
                 ];
 
-                if ($this->validateData($data)){
+                $isInvalid = $this->validateData($data);
+
+                if ($isInvalid){
+                    $this->view('Login/register', $isNotValid);
+                }
+                else {
                     if ($this->loginModel->createUser($data)) {
                         echo 'Please wait creating the account for ' . trim($_POST['username']);
                         echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Login/">';
@@ -119,10 +125,10 @@ class Login extends Controller
         if(empty($data['username'])){
             $data['username_error'] = 'Username can not be empty';
         }
-        if(empty($data['firstName'])){
+        if(empty($data['firstname'])){
             $data['firstName_error'] = 'First Name can not be empty';
         }
-        if(empty($data['lastName'])){
+        if(empty($data['lastname'])){
             $data['lastName_error'] = 'Last Name can not be empty';
         }
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -133,10 +139,10 @@ class Login extends Controller
         }
       
         if(empty($data['username_error']) && empty($data['firstName_error']) && empty($data['lastName_error']) && empty($data['email_error']) && empty($data['password_len_error'])){
-            return true;
+            return false;
         }
         else{
-            $this->view('Login/register', $data);
+            return $data;
         }
     }
 
