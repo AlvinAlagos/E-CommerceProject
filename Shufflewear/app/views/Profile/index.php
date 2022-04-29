@@ -68,6 +68,8 @@
     </div>
 </form>
 
+
+<h4 class="text-center">Inventory</h4>
 <table class="table table-bordered" style="width: 50%; margin-left:auto; margin-right:auto;">
     <tr>
         <td>Item</td>
@@ -118,7 +120,7 @@
 
 
 <!-- add table for auctions -->
-
+<h4 class="text-center">Auctions</h4>
 <table class="table table-bordered" style="width: 50%; margin-left:auto; margin-right:auto;">
     <tr>
         <td>Item</td>
