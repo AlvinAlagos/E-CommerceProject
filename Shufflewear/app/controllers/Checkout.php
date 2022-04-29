@@ -12,11 +12,11 @@ class Checkout extends Controller{
     }
     public function index()
     {
+        $user = [
+            'userId' => $_SESSION["user_id"]
+        ];
+
         if(!isset($_POST['payment'])){
-            $user = [
-                'userId' => $_SESSION["user_id"]
-            ];
-    
             $data = [
                 'cart' => $this->cartModel->getCartItems($user),
                 'user' => $this->loginModel->getUser($_SESSION['user_username'])
@@ -25,23 +25,24 @@ class Checkout extends Controller{
             $this->view('Checkout/index', $data);
             
         }else{
-            // $data = [
-            //     'address' => trim($_POST['address']),
-            //     'number' => trim($_POST['number']),
-            //     'cardNumber' => trim($_POST['cardNumber']),
-            //     'cardName' => trim($_POST['cardName']),
-            //     'expDate' => trim($_POST['expDate']),
-            //     'code' => trim($_POST['code']),
-            //     'address_error' => '',
-            //     'number_error' => '',
-            //     'cardNumber_error' => '',
-            //     'cardName_error' => '',
-            //     'expDate_error' => '',
-            //     'code_error' => ''
-            // ];
-            
+            $data = [
+                'cart' => $this->cartModel->getCartItems($user),
+                'user' => $this->loginModel->getUser($_SESSION['user_username']),
+                'address' => trim($_POST['address']),
+                'number' => trim($_POST['number']),
+                'cardNumber' => trim($_POST['cardNumber']),
+                'cardName' => trim($_POST['cardName']),
+                'expDate' => trim($_POST['expDate']),
+                'code' => trim($_POST['code']),
+                'address_error' => '',
+                'number_error' => '',
+                'cardNumber_error' => '',
+                'cardName_error' => '',
+                'expDate_error' => '',
+                'code_error' => ''
+            ];
 
-            //  if($this->validateData($data)){
+            if($this->validateData($data)){
                 $user = [
                     'userId' => $_SESSION['user_id']
                 ];
@@ -49,7 +50,6 @@ class Checkout extends Controller{
                     'cart' => $this->cartModel->getCartItems($user)
                 ];
                
-
                 foreach($items['cart'] as $item){
                     $listingQuantity = $this->listingModel->getQuantity($item->itemId);
                     $updatedQuantity = $listingQuantity->quantity - $item->cart_quantity;
@@ -61,26 +61,19 @@ class Checkout extends Controller{
                         'updatedQuantity' =>$updatedQuantity
                     ];
 
-                  
-                    
                     $this->purchaseModel->addPurchase($info);
                     $this->listingModel->updateQuantity($info);
-                    
                 }
                 
                 $this->cartModel->clearUserCart($_SESSION['user_id']);
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Checkout/succesfulPayment">';
-            // }
-            
-            
+            }
         }
     }
 
     public function succesfulPayment(){
         $this->view('Checkout/Success');
     }
-
-   
 
     public function validateData($data){
         if(empty($data['address'])){
@@ -101,9 +94,18 @@ class Checkout extends Controller{
         if(empty($data['code'])){
             $data['code_error'] = 'CVV code can not be empty';
         }
-       
-        else{
-            $this->view('Checkout/index',$data);
+
+        if(empty($data['address_error']) && 
+                empty($data['number_error']) && 
+                empty($data['cardNumber_error']) && 
+                empty($data['cardName_error']) && 
+                empty($data['expDate_error']) && 
+                empty($data['code_error']))
+        {
+            return true;
+        }
+        else {
+            $this->view('Checkout/index', $data);
         }
     }
 

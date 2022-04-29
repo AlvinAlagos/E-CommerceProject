@@ -31,29 +31,29 @@ $user = $data['user'];
           <!-- Text input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="address">Address</label>
-            <input type="text" id="address" name="address"class="form-control" <?php echo (!empty($data['address_error'])) ? 'is-invalid' : ''; ?> placeholder="Address" />
-            <span class="invalid-feedback"><?php echo $data['address_error']; ?> </span>
+            <input type="text" id="address" name="address"class="form-control  <?php echo (!empty($data['address_error'])) ? 'is-invalid' : ''; ?>" placeholder="Address" />
+            <span class="invalid-feedback" role="alert"><?php echo $data['address_error']; ?> </span>
 
           </div>
 
           <!-- Number input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="number">Phone Number</label>
-            <input type="number" id="number" name="number"class="form-control" <?php echo (!empty($data['number_error'])) ? 'is-invalid' : ''; ?> placeholder="(XXX)-XXX-XXX" />
+            <input type="number" id="number" name="number"class="form-control <?php echo (!empty($data['number_error'])) ? 'is-invalid' : ''; ?>" placeholder="(XXX)-XXX-XXX" />
             <span class="invalid-feedback"><?php echo $data['number_error']; ?> </span>
           </div>
 
           <h5 style="border-bottom: 1px solid black;">Payment Method</h5>
           <div class="form-outline mb-4">
             <label class="form-label" for="cardNumber">Card Number</label>
-            <input type="text" id="cardNumber" name="cardNumber"class="form-control" <?php echo (!empty($data['cardNumber_error'])) ? 'is-invalid' : ''; ?> />
+            <input type="text" id="cardNumber" name="cardNumber"class="form-control <?php echo (!empty($data['cardNumber_error'])) ? 'is-invalid' : ''; ?>" />
             <span class="invalid-feedback"><?php echo $data['cardNumber_error']; ?> </span>
           </div>
 
           <div class="form-outline mb-4">
             <label class="form-label" for="cardName">Name on card</label>
-            <input type="text" id="cardName" name="cardName"class="form-control" <?php echo (!empty($data['email_error'])) ? 'is-invalid' : ''; ?> />
-            <span class="invalid-feedback"><?php echo $data['email_error']; ?> </span>
+            <input type="text" id="cardName" name="cardName"class="form-control <?php echo (!empty($data['cardName_error'])) ? 'is-invalid' : ''; ?>" />
+            <span class="invalid-feedback"><?php echo $data['cardName_error']; ?> </span>
           </div>
 
           <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -61,15 +61,15 @@ $user = $data['user'];
             <div class="col">
               <div class="form-outline">
                 <label class="form-label" for="expDate">Exp. Date</label>
-                <input type="text" id="expDate" name="expDate" class="form-control" <?php echo (!empty($data['expDate'])) ? 'is-invalid' : ''; ?> />
-                <span class="invalid-feedback"><?php echo $data['expDate']; ?> </span>
+                <input type="text" id="expDate" name="expDate" class="form-control <?php echo (!empty($data['expDate_error'])) ? 'is-invalid' : ''; ?>" />
+                <span class="invalid-feedback"><?php echo $data['expDate_error']; ?> </span>
               </div>
             </div>
             <div class="col">
               <div class="form-outline">
                 <label class="form-label" for="code">Security code</label>
-                <input type="text" id="code" name="code"class="form-control" <?php echo (!empty($data['code'])) ? 'is-invalid' : ''; ?>x />
-                <span class="invalid-feedback"><?php echo $data['code']; ?> </span>
+                <input type="text" id="code" name="code"class="form-control <?php echo (!empty($data['code_error'])) ? 'is-invalid' : ''; ?>" />
+                <span class="invalid-feedback"><?php echo $data['code_error']; ?> </span>
               </div>
             </div>
           </div>
