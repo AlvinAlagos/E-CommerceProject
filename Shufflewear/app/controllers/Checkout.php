@@ -42,7 +42,12 @@ class Checkout extends Controller{
                 'code_error' => ''
             ];
 
-            if($this->validateData($data)){
+            $isInvalid = $this->validateData($data);
+
+            if ($isInvalid){
+                $this->view('Checkout/index', $isInvalid);
+            }
+            else {
                 $user = [
                     'userId' => $_SESSION['user_id']
                 ];
@@ -102,10 +107,10 @@ class Checkout extends Controller{
                 empty($data['expDate_error']) && 
                 empty($data['code_error']))
         {
-            return true;
+            return false;
         }
         else {
-            $this->view('Checkout/index', $data);
+            return $data;
         }
     }
 
