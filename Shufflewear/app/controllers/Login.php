@@ -1,4 +1,8 @@
 <?php
+    include_once dirname(APPROOT).'/vendor/sonata-project/google-authenticator/src/FixedBitNotation.php';
+    include_once dirname(APPROOT).'/vendor/sonata-project/google-authenticator/src/GoogleAuthenticatorInterface.php';
+    include_once dirname(APPROOT).'/vendor/sonata-project/google-authenticator/src/GoogleAuthenticator.php';
+    include_once dirname(APPROOT).'/vendor/sonata-project/google-authenticator/src/GoogleQrUrl.php';
 
 class Login extends Controller
 {
@@ -12,19 +16,54 @@ class Login extends Controller
     {
         if (!isset($_POST['login'])) {
             $this->view('Login/index');
-        } else {
+        } 
+        else {
             $user = $this->loginModel->getUser($_POST['username']);
+            
             if (!$user == null) {
                 $hashed_pass = $user->password_hash;
                 $password = $_POST['pass'];
+                $secret = $user->secret;
+                $code = $_POST['code'];
                 
                 if (password_verify($password, $hashed_pass)) {
-                    $this->createSession($user);
-                    //echo 'Please wait creating the account for ' . trim($_SESSION['seller_id']);
-                    echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Home/">';
-                } else {
-                    echo 'Do not match ' .$hashed_pass;
+                    if ($user->secret != null) {
+                        if (!empty($code)) {
+                            if ($this->check($secret, $code)) {
+                                $this->createSession($user);
+                                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Home/">';
+                            }
+                            else {
+                                $data = [
+                                    'msg' => "Incorrect or expired code."
+                                ];
+                                $this->view('Login/index', $data); 
+                            }
+                        }
+                        else {
+                            $data = [
+                                'msg' => "Please enter the 2FA code."
+                            ];
+                            $this->view('Login/index', $data); 
+                        }
+                    }
+                    else {
+                        $this->createSession($user);
+                        echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Home/">';
+                    }
+                } 
+                else {
+                    $data = [
+                        'msg' => "Incorrect password."
+                    ];
+                    $this->view('Login/index', $data);
                 }
+            }
+            else {
+                $data = [
+                    'msg' => $_POST['username'] ." does not exist.",
+                ];
+                $this->view('Login/index', $data);
             }
         }
     }
@@ -71,6 +110,7 @@ class Login extends Controller
         unset($_SESSION['user_id']);
         unset($_SESSION['user_username']);
         unset($_SESSION['seller_id']);
+        unset($_SESSION['secret']);
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/Shufflewear/">';
     }
@@ -105,11 +145,38 @@ class Login extends Controller
         $_SESSION['user_username'] = $user->username;
 
         $seller = $this->loginModel->getSeller($_SESSION['user_id']);
-
         if($seller != null){
             $_SESSION['seller_id'] = $seller->sellerId;
         }
         
+        $user = $this->loginModel->getUser($_SESSION['user_username']);
+        
+        //user without code
+        if ($user->secret == null) {
+            $_SESSION['secret'] = $this->generateSecret();
+        }
+        //user with code
+        else {
+            $_SESSION['secret'] = $user->secret;
+        }
+    }
+
+    function generateSecret() {
+        $g = new \Google\Authenticator\GoogleAuthenticator();
+        $secret = $g->generateSecret();
+
+        return $secret;
+    }
+
+    function check($secret, $code) {
+        $g = new \Sonata\GoogleAuthenticator\GoogleAuthenticator();
+        
+        if ($g->checkCode($secret, $code)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 

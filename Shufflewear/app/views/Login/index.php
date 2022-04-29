@@ -1,6 +1,17 @@
 <?php require APPROOT . '/views/includes/header.php';
 ?>
 
+<div class="container mt-5">
+    <?php
+        if (!empty($data['msg'])) {
+            echo    
+            '<div class="alert alert-danger" role="alert">'
+                . $data['msg'] .
+            '</div>';
+        }
+    ?>
+</div>
+
 <section class="vh-100" style="background-color: #FFFFFF;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,6 +41,11 @@
                                     <div class="form-outline mb-4">
                                         <input type="password" id="pass" name="pass"class="form-control form-control-lg" />
                                         <label class="form-label" for="pass">Password</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="code" name="code"class="form-control form-control-lg" />
+                                        <label class="form-label" for="code">2FA</label>
                                     </div>
 
                                     <div class="pt-1 mb-4">

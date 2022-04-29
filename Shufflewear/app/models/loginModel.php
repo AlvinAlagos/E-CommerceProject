@@ -39,14 +39,24 @@ class loginModel
         $this->db->bind(':lastName', $data['lastName']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':img', $data['img']);
-        
 
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
+    }
 
+    public function addSecret($data) {
+        $this->db->query("UPDATE users SET secret=:secret WHERE userId=:userId");
+        $this->db->bind(':secret', $data['secret']);
+        $this->db->bind(':userId', $data['userId']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Seller
