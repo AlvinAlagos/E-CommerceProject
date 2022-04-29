@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2022 at 08:05 AM
+-- Generation Time: Apr 29, 2022 at 05:24 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -38,6 +38,13 @@ CREATE TABLE `auction` (
   `itemId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `auction`
+--
+
+INSERT INTO `auction` (`auctionId`, `startingBid`, `currentBid`, `buyNowPrice`, `startDate`, `endDate`, `currentBidder`, `itemId`) VALUES
+(4, 999, 0, 10000, '2022-04-29', '2022-04-30', NULL, 27);
+
 -- --------------------------------------------------------
 
 --
@@ -52,13 +59,6 @@ CREATE TABLE `cart` (
   `size` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cartId`, `itemId`, `userId`, `quantity`, `size`) VALUES
-(35, 24, 3, 2, 'X-small');
-
 -- --------------------------------------------------------
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `inventory` (
   `color` varchar(50) NOT NULL,
   `isListed` bit(1) NOT NULL DEFAULT b'0',
   `img` varchar(255) NOT NULL,
-  `sellerId` int(11) NOT NULL
+  `sellerId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -80,7 +80,10 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`itemId`, `itemName`, `description`, `color`, `isListed`, `img`, `sellerId`) VALUES
-(24, 'Snoop Dogg vintage shirt', 'Vintage Shirt', 'Black', b'1', '6269d530ebb1e.jpg', 12);
+(24, 'Snoop Dogg vintage shirt', 'Vintage Shirt', 'Black', b'0', '626ad53e1f95c.jpg', NULL),
+(25, 'Night Vision Goggles', 'see in da dark', 'Black', b'0', '626ad948c39a0.jpg', NULL),
+(26, 'Old denim jeans', 'Little stain on it', 'Blue', b'0', '626aecb6134de.jpg', NULL),
+(27, 'Snoop Dogg vintage shirt', 'Snoop Dog shirt', 'Black', b'0', '626af79cba4e2.jpg', 13);
 
 -- --------------------------------------------------------
 
@@ -94,13 +97,6 @@ CREATE TABLE `listing` (
   `price` double NOT NULL,
   `itemId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `listing`
---
-
-INSERT INTO `listing` (`listingId`, `quantity`, `price`, `itemId`) VALUES
-(13, 3, 10.99, 24);
 
 -- --------------------------------------------------------
 
@@ -121,7 +117,9 @@ CREATE TABLE `purchasehistory` (
 --
 
 INSERT INTO `purchasehistory` (`purchaseId`, `itemId`, `userId`, `quantity`, `purchaseDate`) VALUES
-(10, 24, 3, 2, '2022-04-28');
+(10, 24, 3, 2, '2022-04-28'),
+(11, 24, 3, 1, '2022-04-28'),
+(12, 25, 3, 5, '2022-04-28');
 
 -- --------------------------------------------------------
 
@@ -143,7 +141,7 @@ CREATE TABLE `sellers` (
 INSERT INTO `sellers` (`sellerId`, `isBanned`, `banDate`, `userId`) VALUES
 (8, b'0', NULL, 4),
 (9, b'0', NULL, 5),
-(12, b'0', NULL, 3);
+(13, b'0', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -254,37 +252,37 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `auctionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `auctionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-  MODIFY `listingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `listingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `purchasehistory`
 --
 ALTER TABLE `purchasehistory`
-  MODIFY `purchaseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `purchaseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `sellerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sellerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -296,7 +294,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `wishlistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
