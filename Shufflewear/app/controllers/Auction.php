@@ -43,6 +43,10 @@ class Auction extends Controller{
         $auction = $this->auctionModel->getAuction($auctionId);
 
         if (isset($_POST['bid']) || isset($_POST['buyNow'])) {
+            if (!isset($_SESSION['user_id'])) {
+                header('Location: /Shufflewear/Login/index');
+            }
+
             if (isset($_POST['bid'])) {
                 $bid = $_POST['newBid'];
             }
