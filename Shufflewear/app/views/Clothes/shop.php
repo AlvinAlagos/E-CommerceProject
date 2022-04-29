@@ -6,7 +6,7 @@
 <h3 class="mb-3" style="margin-top:5%;margin-left:5%"><u>Filter</u></h3>
 
 <form method="post" action="" style="margin-left:5%;">
-  <p>Please select your favorite Web language:</p>
+  <p>Color:</p>
   <input type="radio" id="Black" name="Color" value="Black">
   <label for="Black">Black</label><br>
   <input type="radio" id="Gray" name="Color"value="Gray">
