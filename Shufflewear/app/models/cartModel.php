@@ -86,6 +86,13 @@
                 return false;
             }
         }
+
+        public function countCartItems($userId) {
+            $this->db->query("SELECT cart.itemId, listing.quantity as total, SUM(cart.quantity) as selected FROM cart INNER JOIN listing on listing.itemId = cart.itemId WHERE userId=:userId GROUP BY itemId");
+            $this->db->bind(':userId', $userId);
+            
+            return $this->db->getResultSet();
+        }
     }
 
 ?>

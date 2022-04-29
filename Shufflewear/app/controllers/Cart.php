@@ -4,8 +4,6 @@
         public function __construct()
         {
             $this->cartModel = $this->model('cartModel');
-            $this->itemModel = $this->model('itemModel');
-            
 
             if (!isset($_SESSION['user_id'])) {
                 header('Location: /Shufflewear/Login/index');
@@ -19,8 +17,19 @@
             ];
 
             $data = [
-                'cart' => $this->cartModel->getCartItems($user)
+                'cart' => $this->cartModel->getCartItems($user),
+                'error' => ''
             ];
+
+            $count = $this->cartModel->countCartItems($_SESSION["user_id"]);
+
+            foreach ($count as $item) {
+                if ($item->selected > $item->total) {
+                    
+                    $data['error'] = "Too many of a single item selected. Please verify the number of each item.";
+                    $this->view('Cart/index', $data);
+                }
+            }
 
             $this->view('Cart/index', $data);
         }
