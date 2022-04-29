@@ -34,37 +34,41 @@
             }
         }
 
-        
-
-        
-
         public function moveToCart($wishlistId) {
             $data = [
                 'wishlistId' => $wishlistId
             ];
 
-            $item = $this->wishlistModel->getWishlistItem($data);
+            $wishListItem = $this->wishlistModel->getWishlistItem($data);
             
-            $data = [
-                'itemId' => $item->itemId,
-                'userId' => $_SESSION['user_id'],
-                //'size' => $_POST['size'],           //only include if putting size in cart, then check quantity of all
-                'quantity' => 1
-            ];
-
-            if ($this->cartModel->addToCart($data)) {
-                echo 'Adding item from wishlist...';
-
-                $data=[
-                    'wishlistId' => $wishlistId
+            if (isset($_POST['move'])) {
+                $data = [
+                    'itemId' => $wishListItem->itemId,
+                    'userId' => $_SESSION['user_id'],
+                    'size' => $_POST['size'],
+                    'quantity' => $_POST['quantity']
                 ];
 
-                if($this->wishlistModel->deleteFromWishlist($data)){
-                    echo 'Removing item from wishlist...';
-                    echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
+                if ($this->cartModel->addToCart($data)) {
+                    echo 'Adding item to cart from wishlist...';
+    
+                    $data=[
+                        'wishlistId' => $wishlistId
+                    ];
+    
+                    if($this->wishlistModel->deleteFromWishlist($data)){
+                        echo 'Removing item from wishlist...';
+                        echo '<meta http-equiv="Refresh" content="0.5; url=/Shufflewear/Cart">';
+                    }
                 }
             }
-            
+            else {
+                $data = [
+                    'wishlistItem' => $wishListItem
+                ];
+                
+                $this->view('Wishlist/moveToCart', $data);
+            }
         }
     }
 ?>

@@ -14,7 +14,7 @@
         }
 
         public function getWishlistItem($data) {
-            $this->db->query("SELECT * FROM wishlist WHERE wishlistId = :wishlistId");
+            $this->db->query("SELECT * FROM wishlist INNER JOIN inventory on wishlist.itemId = inventory.itemId INNER JOIN listing on listing.itemId = wishlist.itemId WHERE wishlistId = :wishlistId");
             $this->db->bind(':wishlistId', $data['wishlistId']);
 
             return $this->db->getSingle();
@@ -64,16 +64,16 @@
             }
         }
 
-        public function moveToCart($data) {
-            $this->cartModel = $this->model('cartModel');
-            $this->itemModel = $this->model('itemModel');
+        // public function moveToCart($data) {
+        //     $this->cartModel = $this->model('cartModel');
+        //     $this->itemModel = $this->model('itemModel');
 
-            if ($this->deleteWishlist($data)) {
-                return $this->cartModel->addToCart($data);
-            }
-            else {
-                return false;
-            }
-        }
+        //     if ($this->deleteWishlist($data)) {
+        //         return $this->cartModel->addToCart($data);
+        //     }
+        //     else {
+        //         return false;
+        //     }
+        // }
     }
 ?>

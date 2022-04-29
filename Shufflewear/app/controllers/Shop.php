@@ -28,14 +28,16 @@ class Shop extends Controller{
 
     }
 
-    public function description($itemId){
+    public function description($listingId){
         if ((isset($_POST['cart']) || isset($_POST['wishlist'])) && !isset($_SESSION['user_id'])) {
             header('Location: /Shufflewear/Login/index');
         }
 
+        $listing = $this->listingModel->getListing($listingId);
+
         if (isset($_POST['cart'])){
             $data = [
-                'itemId' => $itemId,
+                'itemId' => $listing->itemId,
                 'userId' => $_SESSION['user_id'],
                 'size' => $_POST['size'],
                 'quantity' => $_POST['quantity']
@@ -47,7 +49,7 @@ class Shop extends Controller{
         }
         elseif (isset($_POST['wishlist'])){
             $data = [
-                'itemId' => $itemId,
+                'itemId' => $listing->itemId,
                 'userId' => $_SESSION['user_id']
             ];
 
@@ -57,9 +59,7 @@ class Shop extends Controller{
         }
         else {
             $data = [
-                //change this later, inner join in model and get from listing only
-                'item' => $this->itemModel->getItem($itemId),
-                'listInfo' => $this->listingModel->getItem($itemId)
+                'listInfo' => $listing
             ];
             
             $this->view('Clothes/itemDescription', $data);
