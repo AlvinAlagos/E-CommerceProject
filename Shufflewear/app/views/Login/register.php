@@ -55,7 +55,7 @@
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="pass" name="pass" class="form-control" />
+                                <input type="password" id="pass" name="pass" class="form-control" required/>
                                 <label class="form-label" for="pass">Password</label>
                             </div>
 

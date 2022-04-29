@@ -25,7 +25,7 @@
                                     '. $auction->itemName .'
                                 </h3>
                                 <div>
-                                     '. ($auction->currentBid == 0 ? 'Starting at: $'. sprintf('%.2F', $auction->startingBid) : 'Current Bid: $'. sprintf('%.2F', $auction->curentBid)) .'
+                                     '. ($auction->currentBid == 0 ? 'Starting at: $'. sprintf('%.2F', $auction->startingBid) : 'Current Bid: $'. sprintf('%.2F', $auction->currentBid)) .'
                                 </div>
                                 <div>
                                     Available until: '. $auction->endDate .'

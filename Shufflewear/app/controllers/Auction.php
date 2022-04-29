@@ -39,6 +39,42 @@ class Auction extends Controller{
         }
     }
 
+    public function description($auctionId) {
+        $auction = $this->auctionModel->getAuction($auctionId);
+
+        if (isset($_POST['bid']) || isset($_POST['buyNow'])) {
+            if (isset($_POST['bid'])) {
+                $bid = $_POST['newBid'];
+            }
+            else {
+                $bid = $auction->buyNowPrice;
+            }
+            
+            $data = [
+                'auctionId' => $auction->auctionId,
+                'startingBid' => $auction->startingBid,
+                'currentBid' => $bid,
+                'buyNowPrice' => $auction->buyNowPrice,
+                'startDate' => $auction->startDate,
+                'endDate' => $auction->endDate,
+                'currentBidder' => $_SESSION['user_id'],
+                'itemId' => $auction->itemId
+            ];
+
+            if ($this->auctionModel->updateAuction($data)) {
+                echo 'Raising bid to ' . sprintf('%.2F', $bid);
+                echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Auction/description/'. $auctionId .'">';
+            }
+        }
+        else {
+            $data =[
+                'auction' => $auction
+            ];
+    
+            $this->view('Auction/auctionBid', $data);
+        }
+    }
+
     public function getDetails($auctionId) {
         $auction = $this->auctionModel->getAuction($auctionId);
         $this->view('Auction/auctionDetails', $auction);
