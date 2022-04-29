@@ -26,48 +26,48 @@
                         <h2 class="fw-bold mb-5">Sign up now</h2>
                         <form  method="post"  action="">
 
-                            <div class="form-outline mb-4">
-                                <input type="text" id="username" name="username" class="form-control" />
+                            <div class="form-outline mb-4 ">
+                                <input type="text" id="username" name="username" class="form-control <?php echo (!empty($data['username_error'])) ? 'is-invalid' : ''; ?>" />
                                 <label class="form-label" for="username">Username</label>
+                                <div class="alert alert-danger" role="alert"><?php echo $data['username_error']; ?></div>
                             </div>
 
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" id="firstname" name="firstname"class="form-control" />
+                                        <input type="text" id="firstname" name="firstname"class="form-control <?php echo (!empty($data['firstName_error'])) ? 'is-invalid' : ''; ?>" />
                                         <label class="form-label" for="firstname">First name</label>
+                                        <div class="alert alert-danger" role="alert"><?php echo $data['firstName_error']; ?></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        <input type="text" id="lastname" name="lastname" class="form-control" />
+                                        <input type="text" id="lastname" name="lastname" class="form-control <?php echo (!empty($data['lastName_error'])) ? 'is-invalid' : ''; ?>" />
                                         <label class="form-label" for="lastname">Last name</label>
+                                        <div class="alert alert-danger" role="alert"><?php echo $data['lastName_error']; ?></div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="email" name="email" class="form-control" />
+                                <input type="email" id="email" name="email" class="form-control <?php echo (!empty($data['email_error'])) ? 'is-invalid' : ''; ?>" />
                                 <label class="form-label" for="email">Email address</label>
+                                <div class="alert alert-danger" role="alert"><?php echo $data['email_error']; ?></div>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="pass" name="pass" class="form-control" required/>
+                                <input type="password" id="pass" name="pass" class="form-control  <?php echo (!empty($data['password_len_error'])) ? 'is-invalid' : ''; ?>">
                                 <label class="form-label" for="pass">Password</label>
+                                <div class="alert alert-danger" role="alert"><?php echo $data['password_len_error']; ?></div>
                             </div>
-
                             
-
                             <!-- Submit button -->
                             <button type="submit" name='signup' class="btn btn-primary btn-block mb-4">
                                 Sign up
                             </button>
-
-                   
-                           
                         </form>
                     </div>
                 </div>
@@ -77,6 +77,14 @@
                 <img src="https://images.pexels.com/photos/1868471/pexels-photo-1868471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="w-100 rounded-4 shadow-4" alt=""/>
             </div>
         </div>
+
+        <?php
+            if (!empty($data['msg'])) {
+                echo '<div class="alert alert-danger" role="alert">'.
+                    $data['msg'].'
+                </div>';
+            }
+        ?>
     </div>
     <!-- Jumbotron -->
 </section>
