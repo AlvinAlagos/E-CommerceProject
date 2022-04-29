@@ -50,7 +50,7 @@
                                 <input type="number" class="form-control" id="newBid" name="newBid" step="0.01" 
                                     value="<?php if ($available) { echo ($auction->currentBid != 0) ? sprintf('%.2F', $auction->currentBid + 0.01) : sprintf('%.2F', $auction->startingBid); } ?>" 
                                     min="<?php echo ($auction->currentBid != 0) ? ($auction->currentBid + 0.01) : $auction->startingBid; ?>" 
-                                    max="<?php $auction->buyNowPrice ?>" <?php if (!$available) {echo 'disabled'; } ?>>
+                                    max="<?php if ($auction->buyNowPrice > 0 && $auction->buyNowPrice > $auction->currentBid) echo $auction->buyNowPrice; ?>" <?php if (!$available) {echo 'disabled'; } ?>>
                             </div>
                         
                             <div class="pt-1 mb-2">
