@@ -60,4 +60,4 @@ A seller can view their makings in a specific time stamp
 
 7. A user can generate colors for their outfits
 	
-  The color api got deleted. https://x-colors.herokuapp.com/api/
+  The color api got deleted. We did have it implemented for deliverable 3a. https://x-colors.herokuapp.com/api/
