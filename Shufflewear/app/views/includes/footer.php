@@ -5,11 +5,7 @@
     color: white !important;
     clear: left !important;
 ">
-  <!-- <div class="bar" style ="
-  width: 100%;
-  height: 20px;
-  ">
-     -->
+
   <section> 
   </section>
 </div>

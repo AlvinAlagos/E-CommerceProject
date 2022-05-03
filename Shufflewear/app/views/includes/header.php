@@ -26,7 +26,7 @@
 
     <!-- Background image -->
 
-    <header style=" position: sticky !important; margin-top: 30px;">
+    <header style=" position: sticky !important; margin-top: 30px; border-top: 2px solid rgba(0,0,0, .9); border-bottom: 2px solid rgba(0,0,0, .9);">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">

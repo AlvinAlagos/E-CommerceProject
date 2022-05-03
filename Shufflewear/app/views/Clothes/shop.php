@@ -40,7 +40,16 @@
                 foreach($data['listing'] as $listing) {
                     echo '<div class="col mb-5 text-center" style="height: 350px;">
                             <a href="/Shufflewear/Shop/description/'. $listing->listingId . '"><img src="' . URLROOT . '/public/img/' . $listing->img . '" width="60%" style="object-fit: contain; height: 300px; border: 1px solid rgb(200,200,200); background-color: rgb(245,245,245);"></a>
-                            <h4 class="mt-3">'. $listing->itemName .'</h4>';
+                            <h4 class="mt-3" style="
+                            text-align: center; 
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 20px;">'. $listing->itemName .'</h4>
+
+                            <h5 style="
+                            font-style: normal;
+                            font-weight: 300;
+                            font-size: 15px;">' . $listing->price . '</h5>';
                     echo '</div>';
                 }
             ?>
