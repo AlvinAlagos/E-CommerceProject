@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2022 at 05:24 AM
+-- Generation Time: May 04, 2022 at 04:40 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -43,7 +43,8 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`auctionId`, `startingBid`, `currentBid`, `buyNowPrice`, `startDate`, `endDate`, `currentBidder`, `itemId`) VALUES
-(4, 999, 0, 10000, '2022-04-29', '2022-04-30', NULL, 27);
+(7, 0, 0, 0, '0000-00-00', '0000-00-00', NULL, 29),
+(8, 240.19, 0, 1000.4, '2022-05-03', '2022-05-06', NULL, 35);
 
 -- --------------------------------------------------------
 
@@ -58,6 +59,15 @@ CREATE TABLE `cart` (
   `quantity` int(11) NOT NULL,
   `size` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cartId`, `itemId`, `userId`, `quantity`, `size`) VALUES
+(37, 28, 5, 1, 'X-small'),
+(39, 29, 11, 1, 'X-small'),
+(40, 29, 11, 19, 'X-small');
 
 -- --------------------------------------------------------
 
@@ -83,7 +93,15 @@ INSERT INTO `inventory` (`itemId`, `itemName`, `description`, `color`, `isListed
 (24, 'Snoop Dogg vintage shirt', 'Vintage Shirt', 'Black', b'0', '626ad53e1f95c.jpg', NULL),
 (25, 'Night Vision Goggles', 'see in da dark', 'Black', b'0', '626ad948c39a0.jpg', NULL),
 (26, 'Old denim jeans', 'Little stain on it', 'Blue', b'0', '626aecb6134de.jpg', NULL),
-(27, 'Snoop Dogg vintage shirt', 'Snoop Dog shirt', 'Black', b'0', '626af79cba4e2.jpg', 13);
+(27, 'Snoop Dogg vintage shirt', 'Snoop Dog shirt', 'Black', b'0', '626af79cba4e2.jpg', 13),
+(28, 'test', 'sauce', 'Black', b'1', '626b75474faed.jpg', 9),
+(29, 'sauce', 'very wet', 'Blue', b'1', '626c2683494d2.jpg', 14),
+(30, 'Nike Sweatshirt', 'Nike Sweatshirt is nice', 'White', b'1', '6271e2695eec7.jpg', 15),
+(31, 'Plain Crewneck', 'Comfy bro', 'Black', b'1', '6271e2942c42e.jpg', 15),
+(32, 'Jeans', 'Made from denim, may come ripped', 'Blue', b'1', '6271e2aad9ebb.jpg', 15),
+(33, 'Night Vision Goggles', 'I can see at night, nice', 'Black', b'1', '6271e2d600ad6.jpg', 15),
+(34, 'Snoop Shirt', 'Snoop Dogg shirt, straight from the 1990', 'Black', b'1', '6271e3328654b.jpg', 15),
+(35, 'Suzuki (14) Jersey', 'Game worn and signed', 'Red', b'0', '6271e36b17694.jpg', 15);
 
 -- --------------------------------------------------------
 
@@ -97,6 +115,17 @@ CREATE TABLE `listing` (
   `price` double NOT NULL,
   `itemId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `listing`
+--
+
+INSERT INTO `listing` (`listingId`, `quantity`, `price`, `itemId`) VALUES
+(18, 10, 70.5, 30),
+(19, 44, 44.55, 31),
+(20, 10, 99.99, 32),
+(21, 3, 434.88, 33),
+(22, 20, 60.99, 34);
 
 -- --------------------------------------------------------
 
@@ -119,7 +148,8 @@ CREATE TABLE `purchasehistory` (
 INSERT INTO `purchasehistory` (`purchaseId`, `itemId`, `userId`, `quantity`, `purchaseDate`) VALUES
 (10, 24, 3, 2, '2022-04-28'),
 (11, 24, 3, 1, '2022-04-28'),
-(12, 25, 3, 5, '2022-04-28');
+(12, 25, 3, 5, '2022-04-28'),
+(13, 28, 11, 1, '2022-04-29');
 
 -- --------------------------------------------------------
 
@@ -141,7 +171,9 @@ CREATE TABLE `sellers` (
 INSERT INTO `sellers` (`sellerId`, `isBanned`, `banDate`, `userId`) VALUES
 (8, b'0', NULL, 4),
 (9, b'0', NULL, 5),
-(13, b'0', NULL, 3);
+(13, b'0', NULL, 3),
+(14, b'0', NULL, 11),
+(15, b'0', NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -156,18 +188,20 @@ CREATE TABLE `users` (
   `firstName` varchar(25) NOT NULL,
   `lastName` varchar(25) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `img` varchar(255) DEFAULT '624903bf779d8.jpg'
+  `img` varchar(255) DEFAULT '624903bf779d8.jpg',
+  `secret` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userId`, `username`, `password_hash`, `firstName`, `lastName`, `email`, `img`) VALUES
-(3, 'AlagosAlvin', '$2y$10$O4fmQxw8lmytwLbRgSHwZ.AvFqU.eDuSIXw3nWeKoVdsmfi6kbSNi', 'Alvin Eli', 'Alagos', 'alagos_alvin@hotmail.com', '624903bf779d8.jpg'),
-(4, 'VanessaLe', '$2y$10$GhZUK.AV4/L5Wxzu9GprEOEBfuDNrs0IM/moAZhtvHMbGrg0CI2kC', 'Vanessa', 'le', 'vanessale@hotmail.com', '0'),
-(5, 'getll88', '$2y$10$..KfmvSc9wnNzs2.z/FQ6ekxRnEseVd1nOxFWm.a.Ox9Z78EukpY2', 'Denmar', 'Ermitano', 'ermitano.den@gmail.com', NULL),
-(7, 'Test', '$2y$10$7geY8cuLDf98slXVF7D2jO3z8cMzQo1Eb9IKT6PcXWtWgVFvhNN/e', 'Testing', 'TEst', 'Test@hotmail.com', '624903bf779d8.jpg');
+INSERT INTO `users` (`userId`, `username`, `password_hash`, `firstName`, `lastName`, `email`, `img`, `secret`) VALUES
+(3, 'AlagosAlvin', '$2y$10$O4fmQxw8lmytwLbRgSHwZ.AvFqU.eDuSIXw3nWeKoVdsmfi6kbSNi', 'Alvin Eli', 'Alagos', 'alagos_alvin@hotmail.com', '624903bf779d8.jpg', ''),
+(4, 'VanessaLe', '$2y$10$GhZUK.AV4/L5Wxzu9GprEOEBfuDNrs0IM/moAZhtvHMbGrg0CI2kC', 'Vanessa', 'le', 'vanessale@hotmail.com', '0', ''),
+(5, 'getll88', '$2y$10$..KfmvSc9wnNzs2.z/FQ6ekxRnEseVd1nOxFWm.a.Ox9Z78EukpY2', 'Denmar', 'Ermitano', 'ermitano.den@gmail.com', '626c1ecbe0e03.png', 'GUHF63SNBIWW6PAI'),
+(11, 'tester', '$2y$10$g1dRnf90GxsQNAirFKMSRe.M4snkU81s92BWu5KKReY0uTCi0hDQm', 'tester', 'tester', 'tester@tester.tester', '624903bf779d8.jpg', ''),
+(12, 'getll11', '$2y$10$Uf.sdtlFV.sr71ALHjvK9OH8Bmpp1A4LSZtLePZTVV31Dc2tLzmvO', 'Denmar', 'Ermitano', 'ermitanoq95@hotmail.ca', '624903bf779d8.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -180,6 +214,13 @@ CREATE TABLE `wishlist` (
   `itemId` int(11) NOT NULL,
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`wishlistId`, `itemId`, `userId`) VALUES
+(14, 28, 5);
 
 --
 -- Indexes for dumped tables
@@ -252,49 +293,49 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `auctionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `auctionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `listing`
 --
 ALTER TABLE `listing`
-  MODIFY `listingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `listingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `purchasehistory`
 --
 ALTER TABLE `purchasehistory`
-  MODIFY `purchaseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `purchaseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `sellerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sellerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `wishlistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `wishlistId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
