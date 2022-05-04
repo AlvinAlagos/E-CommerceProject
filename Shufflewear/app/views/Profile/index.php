@@ -68,6 +68,9 @@
     </div>
 </form>
 
+<?php
+if (isSeller()) {
+?>
 
 <h4 class="text-center">Inventory</h4>
 <table class="table table-bordered" style="width: 50%; margin-left:auto; margin-right:auto;">
@@ -151,8 +154,8 @@
 
 
 
+<?php 
 
-
-
-<?php require APPROOT . '/views/includes/footer.php';
+}
+require APPROOT . '/views/includes/footer.php';
 ?>

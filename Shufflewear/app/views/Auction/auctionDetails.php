@@ -7,7 +7,6 @@
         echo "Auction won! Please contact $data->firstName $data->lastName ($data->username) at $data->email";
         echo '</div></div>';
     }
-    
 ?>
 
 <form method='post' action=''style="width: 75%; position:center; margin:auto; margin-top:5%;"  enctype="multipart/form-data" >
