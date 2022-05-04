@@ -1,6 +1,15 @@
 <?php require APPROOT . '/views/includes/header.php';
 ?>
 
+<?php
+    if (isset($data->userId)) {
+        echo '<div class="container mt-3"><div class="alert alert-success" role="alert">';
+        echo "Auction won! Please contact $data->firstName $data->lastName ($data->username) at $data->email";
+        echo '</div></div>';
+    }
+    
+?>
+
 <form method='post' action=''style="width: 75%; position:center; margin:auto; margin-top:5%;"  enctype="multipart/form-data" >
     
     <div class="form-group">

@@ -81,6 +81,12 @@ class Auction extends Controller{
 
     public function getDetails($auctionId) {
         $auction = $this->auctionModel->getAuction($auctionId);
+
+        $currentDate = date('Y-m-d');
+        if ($auction->currentBidder != null && $currentDate > $auction->endDate || $auction->currentBid == $auction->buyNowPrice && $auction->buyNowPrice != 0) {
+            $auction = $this->auctionModel->getAuctionWinner($auctionId);
+        }
+        
         $this->view('Auction/auctionDetails', $auction);
     }
 

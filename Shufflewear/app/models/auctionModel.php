@@ -26,6 +26,14 @@
             return $this->db->getSingle();
         }
 
+        public function getAuctionWinner($auctionId) {
+            $this->db->query("SELECT * FROM auction INNER JOIN inventory on auction.itemId = inventory.itemId INNER JOIN users ON users.userId = auction.currentBidder WHERE auctionId=:auctionId");
+            $this->db->bind(':auctionId', $auctionId);
+
+            return $this->db->getSingle();
+        }
+
+
         public function addToAuction($data) {
             $this->db->query("INSERT INTO auction (startingBid, currentBid, buyNowPrice, startDate, endDate, itemId) values (:startingBid, :currentBid, :buyNowPrice, :startDate, :endDate, :itemId)");
             $this->db->bind(':startingBid', $data['startingBid']);

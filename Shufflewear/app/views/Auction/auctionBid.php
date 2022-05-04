@@ -3,7 +3,8 @@
 
     $auction = $data['auction'];
 
-    $available = (date('Y-m-d') <= $auction->endDate && $auction->currentBid < $auction->buyNowPrice);
+    $auctionFinished = $auction->currentBid < $auction->buyNowPrice && $auction->buyNowPrice != 0 || $auction->buyNowPrice == 0;
+    $available = (date('Y-m-d') <= $auction->endDate && $auctionFinished);
 ?>
 
 <section style="background-color: #eee;">
