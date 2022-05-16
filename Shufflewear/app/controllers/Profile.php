@@ -135,12 +135,12 @@ class Profile extends Controller
                 'itemName' => trim($_POST['itemName']),
                 'description' => trim($_POST['description']),
                 'color' => trim($_POST['color']),
-                'img' => $filename,
+                'img' => ($filename) ? $filename : $item->img,
                 'sellerId' => $_SESSION['seller_id']
             ];
             // var_dump($data);
             if ($this->itemModel->updateItem($data, $itemId)) {
-                echo 'Your item has been added successfully!';
+                echo 'Your item has been updated successfully!';
 
                 echo '<meta http-equiv="Refresh" content="2; url=/Shufflewear/Profile/">';
             }
