@@ -7,31 +7,76 @@
 
 <form method="post" action="" style="margin-left:5%;">
     <p>Color:</p>
-    <input type="radio" id="Black" name="Color" value="Black">
-    <label for="Black">Black</label><br>
-    <input type="radio" id="Gray" name="Color"value="Gray">
-    <label for="Gray">Gray</label><br>
-    <input type="radio" id="White" name="Color"value="White">
-    <label for="White">White</label><br>
-    <input type="radio" id="Green" name="Color"value="Green">
-    <label for="Green">Green</label><br>
-    <input type="radio" id="Yellow" name="Color"value="Yellow">
-    <label for="Yellow">Yellow</label><br>
-    <input type="radio" id="Blue" name="Color"value="Blue">
-    <label for="Blue">Blue</label><br>
-    <input type="radio" id="Purple" name="Color"value="Purple">
-    <label for="Purple">Purple</label><br>
-    <input type="radio" id="Red" name="Color"value="Red">
-    <label for="Red">Red</label><br>
-    <input type="radio" id="Orange" name="Color"value="Orange">
-    <label for="Orange">Orange</label><br>
     
-    <button class="btn btn-dark btn-lg btn-block" type="submit" name="filter" style="font-size:10px; width:50%;">Filter Color</button>   
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Black" value="Black">
+        <label class="form-check-label" for="Black">
+            Black
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Gray" value="Gray">
+        <label class="form-check-label" for="Gray">
+            Gray
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="White" value="White">
+        <label class="form-check-label" for="White">
+            White
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Green" value="Green">
+        <label class="form-check-label" for="Green">
+            Green
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Yellow" value="Yellow">
+        <label class="form-check-label" for="Yellow">
+            Yellow
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Blue" value="Blue">
+        <label class="form-check-label" for="Blue">
+            Blue
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Purple" value="Purple">
+        <label class="form-check-label" for="Purple">
+            Purple
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Red" value="Red">
+        <label class="form-check-label" for="Red">
+            Red
+        </label>
+    </div>
+    
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="Color" id="Orange" value="Orange">
+        <label class="form-check-label" for="Orange">
+            Orange
+        </label>
+    </div>
+    
+    <button class="btn btn-dark btn-lg btn-block mt-3" type="submit" name="filter" style="font-size:10px; width:50%;">Filter Color</button>   
 
 </form>
 </div>
 
-<div class="right-side" style="width: 85%; height: auto; float:left; border-left: 2px solid black; ">
+<div class="right-side" style="width: 85%; height: 100%; float:left; border-left: 2px solid black; ">
 
     <div class="container" style="margin-top: 5%;">
         <div class="row row-cols-3"> 

@@ -22,7 +22,7 @@
                                 <?php echo '<span>Quantity</span><span>' . $wishlistItem->quantity . '</span>' ?>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Price</span><span>' . $wishlistItem->price . '</span>' ?>
+                                <?php echo '<span>Price</span><span>' . sprintf('%.2F', $wishlistItem->price) . '</span>' ?>
                             </div>
                         </div>
 

@@ -23,7 +23,7 @@
                                 <?php echo '<span>Quantity</span><span>' . $item->quantity . '</span>' ?>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <?php echo '<span>Price</span><span>' . $item->price . '</span>' ?>
+                                <?php echo '<span>Price</span><span>' . sprintf('%.2F', $item->price) . '</span>' ?>
                             </div>
                         </div>
 
