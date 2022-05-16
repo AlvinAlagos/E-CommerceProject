@@ -26,7 +26,7 @@
                 echo "<tr>";
                 echo '<td><div class="d-flex justify-content-center"><img src="' . URLROOT . '/public/img/' . $item->img . '" width="120"></div></td>';
                 echo "<td>$item->itemName</td>";
-                echo "<td >$$item->price</td>";
+                echo "<td >$". sprintf('%.2F', $item->price) ."</td>";
                 echo "<td>";
                 
                 if ($item->quantity > 0) {
