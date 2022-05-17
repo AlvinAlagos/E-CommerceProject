@@ -2,7 +2,9 @@
 ?>
 
 
-<div class="container" style="margin-top: 5%;">
+<div class="container">
+    <h1 class="display-1">Purchase History</h1>
+
     <table class="table table-bordered">
         <tr>
             <td>Item</td>
